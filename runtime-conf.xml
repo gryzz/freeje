@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+  <propel>
+    <datasources default="callermate">
+      <datasource id="callermate">
+        <adapter>mysql</adapter>
+        <connection>
+          <dsn>mysql:host=localhost;dbname=callermate</dsn>
+          <user>root</user>
+          <password>root123</password>
+        </connection>
+      </datasource>
+    </datasources>
+  </propel>
+</config>

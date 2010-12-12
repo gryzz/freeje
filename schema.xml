@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database name="callermate" defaultIdMethod="native">
+  <table name="user" phpName="User">
+    <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
+    <column name="email" type="varchar" required="true"/>
+    <column name="firstname" type="varchar" required="true"/>
+    <column name="lastname" type="varchar" required="true"/>
+    <column name="address" type="varchar" required="true"/>
+    <column name="city" type="varchar" required="true"/>
+    <column name="country" type="varchar" required="true"/>
+    <column name="postcode" type="varchar" required="true"/>
+    <column name="phone" type="varchar" required="true"/>
+    <column name="login_time" type="integer" required="true"/>
+  </table>
+</database>
