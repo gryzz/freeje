@@ -6,7 +6,7 @@ class IndexResponse extends  ResponseBase {
     public function __construct() {
         parent::__construct('index.tpl');
         
-        parent::declareVars(array('pageTitle', 'isLogined', 'error'));
+        parent::declareVars(array('pageTitle', 'isLogined', 'error', 'content'));
 
         $this->set('pageTitle', 'Головна сторінка.');
     }

@@ -2,6 +2,7 @@
 require_once PATH_PRESENTATION . 'common/interfaces/IPage.php';
 require_once PATH_PRESENTATION . 'IndexPage/IndexRequest.php';
 require_once PATH_PRESENTATION . 'IndexPage/IndexResponse.php';
+require_once PATH_PRESENTATION . 'IndexPage/RegistrationComponent.php';
 require_once PATH_APPLICATION . 'Caller.php';
 
 class IndexPage implements IPage {
@@ -25,6 +26,17 @@ class IndexPage implements IPage {
                     } else {
                         $response->setError("Error happened");
                     }
+                }
+
+                switch ($request->getSection()) {
+                    case 'registration' :
+                        if (!$isLogined) {
+                            $registrationComponent = new RegistrationComponent();
+                            $registrationResponse = $registrationComponent->execute();
+
+                            $response->addChild('content', $registrationResponse);
+                        }
+                        break;
                 }
                 
 		return $response;

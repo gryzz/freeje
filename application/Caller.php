@@ -1,6 +1,7 @@
 <?php
 require_once PATH_CALLS . 'UserLogin.php';
 require_once PATH_CALLS . 'WhoAmI.php';
+require_once PATH_CALLS . 'UserRegister.php';
 require_once PATH_APPLICATION . 'UserApplication.php';
 
 class Caller {
@@ -86,6 +87,10 @@ class Caller {
         $result = curl_exec($curlConnection);
 
         return json_decode($result);
+    }
+
+    public function makeRegisterCall() {
+        return 1;
     }
 }
 
