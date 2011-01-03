@@ -16,4 +16,9 @@
         <index-column name="freeje_id" />
     </index>
   </table>
+
+  <table name="country" phpName="Country">
+      <column name="id" type="integer" required="true" primaryKey="true"/>
+      <column name="name" type="varchar" required="true"/>
+  </table>
 </database>

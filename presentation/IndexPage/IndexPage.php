@@ -5,9 +5,13 @@ require_once PATH_PRESENTATION . 'IndexPage/IndexResponse.php';
 require_once PATH_PRESENTATION . 'IndexPage/RegistrationComponent.php';
 require_once PATH_APPLICATION . 'Caller.php';
 
+require_once ROOT . 'propel/runtime/lib/Propel.php';
+
 class IndexPage implements IPage {
 	
 	public function execute() {
+                $propel = Propel::init(PATH_PROPEL_CONF);
+
 		$response = new IndexResponse();
                 $request = new IndexRequest();
 

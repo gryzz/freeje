@@ -89,8 +89,35 @@ class Caller {
         return json_decode($result);
     }
 
-    public function makeRegisterCall() {
-        return 1;
+    public function makeRegisterCall($email, $phone, $firstname, $lastname, $address, $city, $country, $postcode) {
+        $userRegistration = new UserRegister($email, $phone, $firstname, $lastname, $address, $city, $country, $postcode);
+
+        $url = $userRegistration->createCallUrl();
+
+        $curlConnection = curl_init();
+
+        $options = array(
+            CURLOPT_URL            => $url,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_HEADER         => false,
+//            CURLOPT_COOKIEJAR      => self::FILE,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_ENCODING       => "",
+            CURLOPT_USERAGENT      => "spider",
+            CURLOPT_AUTOREFERER    => true,
+            CURLOPT_CONNECTTIMEOUT => 120,
+            CURLOPT_TIMEOUT        => 120,
+            CURLOPT_MAXREDIRS      => 10,
+            CURLINFO_HEADER_OUT    => true
+        );
+
+
+        curl_setopt_array($curlConnection, $options);
+        $result = json_decode(curl_exec($curlConnection));
+
+        curl_close($curlConnection);
+
+        return $result;
     }
 }
 
