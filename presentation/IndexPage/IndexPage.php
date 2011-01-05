@@ -20,11 +20,25 @@ class IndexPage implements IPage {
                 $isLogined = $caller->makeWhoAmICall();
                 
                 if ($isLogined) {
-                    //$result = $caller->makeLoginCall('gryzz@mail.lviv.ua', '4188991524');
                     $response->setIsLogined($isLogined);
                 } elseif ($request->isFormPosted()) {
                     $result = $caller->makeLoginCall($request->getEmail(), $request->getPassword());
-                    
+
+                    if ($result == "true") {
+                        $response->setIsLogined(true);
+                        $user = UserQuery::create()->findOneByEmail($request->getEmail());
+
+                        $_SESSION['id'] = $user->getId();
+                    } else {
+                        $response->setError("Error happened");
+                    }
+                } elseif($_SESSION['id']) {
+                    $user = UserQuery::create()->findOneById($_SESSION['id']);
+
+                    if ($user) {
+                        $result = $caller->makeLoginCall($user->getEmail(), $user->getPassword());
+                    }
+
                     if ($result == "true") {
                         $response->setIsLogined(true);
                     } else {

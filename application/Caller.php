@@ -59,6 +59,7 @@ class Caller {
         curl_setopt_array($curlConnection, $options);
         $result = json_decode(curl_exec($curlConnection));
 
+
         return $result;
     }
 
