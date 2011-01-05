@@ -18,6 +18,9 @@
         <?endif;?>
     </td>
     <td>
+        <?if ($activationMessage):?>
+            <?=$activationMessage;?>
+        <?endif;?>
         <?=$content;?>
     </td>
 </tr>

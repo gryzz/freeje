@@ -41,6 +41,10 @@ class IndexPage implements IPage {
                             $response->addChild('content', $registrationResponse);
                         }
                         break;
+
+                   case 'activate' :
+                       $response->setActivationMessage('User Activated');
+                       break;
                 }
                 
 		return $response;

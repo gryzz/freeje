@@ -7,6 +7,6 @@ $page = new IndexPage();
 
 $reponse = $page->execute();
 
-$reponse->display(TRUE);
+$reponse->display(true);
 
 ?>

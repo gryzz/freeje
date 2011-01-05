@@ -5,6 +5,8 @@
     <column name="freeje_id" type="integer" required="true"/>
     <column name="phone" type="integer" required="true"/>
     <column name="email" type="varchar" required="true"/>
+    <column name="login" type="varchar" required="true"/>
+    <column name="password" type="varchar" required="true"/>
     <column name="firstname" type="varchar" required="true"/>
     <column name="lastname" type="varchar" required="true"/>
     <column name="address" type="varchar" required="true"/>
