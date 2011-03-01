@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>CallerMate</title>
+	<link rel="stylesheet" href="css/index.css" type="text/css">
+	<link rel="stylesheet" href="css/sticker.css" type="text/css">
+</head>
+<body>
+    <div id="placeholder" class="sticker">
+        <div id="sticker"></div>
+        <a href="#"><img style="border:0px" id="logo" src="img/logo.png"></a>
+        <div id="menu">
+            <ul>
+                <li><a href="#">Головна</a></li>
+                <li><a href="#">Про послугу</a></li>
+                <li><a href="#">Завантажити</a></li>
+                <li><a href="#">Контакти</a></li>
+            </ul>
+        </div>
+        <div id="langs">
+            <ul>
+                <li><a class="active" href="#">UA</a></li>
+                <li><a href="#">RU</a></li>
+                <li><a href="#">EN</a></li>
+                <li><a href="#">PL</a></li>
+            </ul>
+        </div>
+        <div id="content">
+            <?=$mainContent;?>
+        </div>
+        <div id="left">
+            <?=$userCabinet;?>
+            <form id="callCost">
+                <h5>Розрахунок вартості дзвінка</h5>
+                <label>ваш номер телефону <small>міжнародний формат <img src="img/help.png" style="margin-bottom: -3px;"></small></label>
+                <input type="text" value="" />
+                <h6>+</h6>
+                <label>номер телефону або логін <img src="img/skype.png" style="margin-bottom: -7px;"> абонента</label>
+                <input type="text" value="" />
+                <h6>=</h6>
+                <label>вартість, <small>USD/хвилина</small></label>
+                <input type="text" value="" />
+            </form>
+        </div>
+        <div id="right">
+            <h4>завантажити</h4>
+            <ul>
+                <li><a href="#"><b>Freeje 1.0.9t</b><br/>Java версия</a></li>
+                <li><a href="#"><b>Freeje 2.1.0.1</b><br/>для Windows Mobile</a></li>
+                <li><a href="#"><b>Freeje</b><br/>для Android OS</a></li>
+                <li><a href="#"><b>Freeje 1.0.5</b><br/>для Symbian OS</a></li>
+                <li><a href="#"><b>Freeje 1.8.1</b><br/>для Apple iOS</a></li>
+            </ul>
+        </div>
+        <div id="footer">© 2010 - 2010 Freeje. All rights reserved. TeрррррррLtd.</div>
+    </div>
+</body>
+</html>

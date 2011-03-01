@@ -9,9 +9,9 @@ class IndexRequest extends RequestBase {
         parent::declareVars(array());
     }
     
-    public function getSection() {
-        if ($this->hasParameter('section')) {
-            return $this->getParameter('section');
+    public function getPage() {
+        if ($this->hasParameter('page')) {
+            return $this->getParameter('page');
         }
         
         return null;

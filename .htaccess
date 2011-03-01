@@ -1,0 +1,5 @@
+RewriteEngine On
+#RewriteBase /callermate/
+
+RewriteRule ^contacts.html$ index.php?page=contacts [L,QSA]
+RewriteRule ^howItWorks.html$ index.php?page=howItWorks [L,QSA]
