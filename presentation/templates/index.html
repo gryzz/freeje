@@ -6,6 +6,7 @@
 	<title>CallerMate</title>
 	<link rel="stylesheet" href="css/index.css" type="text/css">
 	<link rel="stylesheet" href="css/sticker.css" type="text/css">
+        <link rel="stylesheet" href="css/pages.css" type="text/css">
 </head>
 <body>
     <div id="placeholder" class="sticker">
@@ -13,10 +14,10 @@
         <a href="#"><img style="border:0px" id="logo" src="img/logo.png"></a>
         <div id="menu">
             <ul>
-                <li><a href="#">Головна</a></li>
-                <li><a href="#">Про послугу</a></li>
-                <li><a href="#">Завантажити</a></li>
-                <li><a href="#">Контакти</a></li>
+                <li><a <?if (!isset($page) || $page == home):?>class="active"<?endif;?> href="home.html">Головна</a></li>
+                <li><a <?if ($page == howItWorks):?>class="active"<?endif;?>href="howItWorks.html">Про послугу</a></li>
+                <li><a <?if ($page == download):?>class="active"<?endif;?>href="download.html">Завантажити</a></li>
+                <li><a <?if ($page == contacts):?>class="active"<?endif;?>href="contacts.html">Контакти</a></li>
             </ul>
         </div>
         <div id="langs">
@@ -28,6 +29,10 @@
             </ul>
         </div>
         <div id="content">
+            <div class="topMiddle"></div><div class="topLeft"></div><div class="topRight"></div>
+            <div class="rightMiddle"></div><div class="rightTop"></div><div class="rightBottom"></div>
+            <div class="bottomMiddle"></div><div class="bottomLeft"></div><div class="bottomRight"></div>
+            <div class="leftMiddle"></div><div class="leftTop"></div><div class="leftBottom"></div>
             <?=$mainContent;?>
         </div>
         <div id="left">

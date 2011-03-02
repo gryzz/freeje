@@ -63,6 +63,8 @@ class IndexPage implements IPage {
                 $contentComponent = new StaticContentComponent();
                 $response->addChild('mainContent', $contentComponent->execute($request->getPage()));
 
+                $response->setPage($request->getPage());
+
 
 
                 //TODO: Fix it

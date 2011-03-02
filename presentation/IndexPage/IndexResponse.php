@@ -8,6 +8,7 @@ class IndexResponse extends  ResponseBase {
         
         parent::declareVars(array(
             'pageTitle',
+            'page',
             'isLogined',
             'error',
             'content',
@@ -17,6 +18,10 @@ class IndexResponse extends  ResponseBase {
         ));
 
         $this->set('pageTitle', 'Головна сторінка.');
+    }
+
+    public function setPage($page) {
+        $this->set('page', $page);
     }
 
     public function setIsLogined($isLogined) {

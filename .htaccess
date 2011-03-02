@@ -3,3 +3,5 @@ RewriteEngine On
 
 RewriteRule ^contacts.html$ index.php?page=contacts [L,QSA]
 RewriteRule ^howItWorks.html$ index.php?page=howItWorks [L,QSA]
+RewriteRule ^download.html$ index.php?page=download [L,QSA]
+RewriteRule ^home.html$ index.php [L,QSA]

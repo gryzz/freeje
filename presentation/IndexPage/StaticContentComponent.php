@@ -15,8 +15,13 @@ class StaticContentComponent extends ComponentBase {
             case 'contacts' :
                 return StaticContentResponse::CONTACTS_TEMPLATE;
                 break;
+
             case 'howItWorks':
                 return StaticContentResponse::HOW_IT_WORKS_TEMPLATE;
+                break;
+
+            case 'download':
+                return StaticContentResponse::DOWNLOAD_TEMPLATE;
                 break;
             
             default : 
