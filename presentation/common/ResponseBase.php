@@ -10,7 +10,13 @@ class ResponseBase {
     public function __construct($template) {
         $this->container = new VarContainer();
 
-        $this->template = $template;       
+        if ($_SESSION['language']) {
+            $language = $_SESSION['language'];
+        } else {
+            $language = IndexPage::DEFAULT_LANGUAGE;
+        }
+
+        $this->template = $language . '/' . $template;
     }
     
     /**

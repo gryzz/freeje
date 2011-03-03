@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>CallerMate</title>
+	<link rel="stylesheet" href="css/index.css" type="text/css">
+	<link rel="stylesheet" href="css/sticker.css" type="text/css">
+        <link rel="stylesheet" href="css/pages.css" type="text/css">
+</head>
+<body>
+    <div id="placeholder" class="sticker">
+        <div id="sticker"></div>
+        <a href="#"><img style="border:0px" id="logo" src="img/logo.png"></a>
+        <div id="menu">
+            <ul>
+                <li><a <?if (!isset($page) || $page == home):?>class="active"<?endif;?> href="home.html">Головна</a></li>
+                <li><a <?if ($page == howItWorks):?>class="active"<?endif;?>href="howItWorks.html">Про послугу</a></li>
+                <li><a <?if ($page == download):?>class="active"<?endif;?>href="download.html">Завантажити</a></li>
+                <li><a <?if ($page == contacts):?>class="active"<?endif;?>href="contacts.html">Контакти</a></li>
+            </ul>
+        </div>
+        <div id="langs">
+            <ul>
+                <li><a <?if($language == 'ua'):?>class="active"<?endif;?> href="<?=WWW_ROOT;?>/ua/home.html">UA</a></li>
+                <li><a <?if($language == 'ru'):?>class="active"<?endif;?> href="<?=WWW_ROOT;?>/ru/home.html">RU</a></li>
+                <li><a <?if($language == 'en'):?>class="active"<?endif;?> href="<?=WWW_ROOT;?>/en/home.html">EN</a></li>
+                <li><a <?if($language == 'pl'):?>class="active"<?endif;?> href="<?=WWW_ROOT;?>/pl/home.html">PL</a></li>
+            </ul>
+        </div>
+        <div id="content">
+            <div class="topMiddle"></div><div class="topLeft"></div><div class="topRight"></div>
+            <div class="rightMiddle"></div><div class="rightTop"></div><div class="rightBottom"></div>
+            <div class="bottomMiddle"></div><div class="bottomLeft"></div><div class="bottomRight"></div>
+            <div class="leftMiddle"></div><div class="leftTop"></div><div class="leftBottom"></div>
+            <?=$mainContent;?>
+        </div>
+        <div id="left">
+            <?=$userCabinet;?>
+            <form id="callCost">
+                <h5>Розрахунок вартості дзвінка</h5>
+                <label>ваш номер телефону <small>міжнародний формат <img src="img/help.png" style="margin-bottom: -3px;"></small></label>
+                <input type="text" value="" />
+                <h6>+</h6>
+                <label>номер телефону або логін <img src="img/skype.png" style="margin-bottom: -7px;"> абонента</label>
+                <input type="text" value="" />
+                <h6>=</h6>
+                <label>вартість, <small>USD/хвилина</small></label>
+                <input type="text" value="" />
+            </form>
+        </div>
+        <div id="right">
+            <h4>завантажити</h4>
+            <ul>
+                <li><a href="#"><b>Freeje 1.0.9t</b><br/>Java версия</a></li>
+                <li><a href="#"><b>Freeje 2.1.0.1</b><br/>для Windows Mobile</a></li>
+                <li><a href="#"><b>Freeje</b><br/>для Android OS</a></li>
+                <li><a href="#"><b>Freeje 1.0.5</b><br/>для Symbian OS</a></li>
+                <li><a href="#"><b>Freeje 1.8.1</b><br/>для Apple iOS</a></li>
+            </ul>
+        </div>
+        <div id="footer">© 2010 - 2010 Freeje. All rights reserved. TeрррррррLtd.</div>
+    </div>
+</body>
+</html>
