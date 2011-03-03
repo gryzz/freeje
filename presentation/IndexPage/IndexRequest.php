@@ -36,4 +36,12 @@ class IndexRequest extends RequestBase {
     public function isFormPosted() {
         return $this->hasParameter('form_posted');
     }
+    
+    public function getLanguage() {
+        if ($this->hasParameter('language')) {
+            return $this->getParameter('language');
+        }
+
+        return null;
+    }
 }

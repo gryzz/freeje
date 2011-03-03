@@ -22,10 +22,10 @@
         </div>
         <div id="langs">
             <ul>
-                <li><a class="active" href="#">UA</a></li>
-                <li><a href="#">RU</a></li>
-                <li><a href="#">EN</a></li>
-                <li><a href="#">PL</a></li>
+                <li><a <?if($language == 'ua'):?>class="active"<?endif;?> href="<?=WWW_ROOT;?>/ua/home.html">UA</a></li>
+                <li><a <?if($language == 'ru'):?>class="active"<?endif;?> href="<?=WWW_ROOT;?>/ru/home.html">RU</a></li>
+                <li><a <?if($language == 'en'):?>class="active"<?endif;?> href="<?=WWW_ROOT;?>/en/home.html">EN</a></li>
+                <li><a <?if($language == 'pl'):?>class="active"<?endif;?> href="<?=WWW_ROOT;?>/pl/home.html">PL</a></li>
             </ul>
         </div>
         <div id="content">

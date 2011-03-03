@@ -1,7 +1,12 @@
 RewriteEngine On
 #RewriteBase /callermate/
 
-RewriteRule ^contacts.html$ index.php?page=contacts [L,QSA]
-RewriteRule ^howItWorks.html$ index.php?page=howItWorks [L,QSA]
-RewriteRule ^download.html$ index.php?page=download [L,QSA]
-RewriteRule ^home.html$ index.php [L,QSA]
+RewriteRule ^(ua|ru|pl|en)/([-a-zA-Z0-9]+).html/?$ index.php?language=$1&page=$2 [L,QSA]
+RewriteRule ^([-a-zA-Z0-9]+).html/?$ index.php?page=$1 [L,QSA]
+
+RewriteRule ^(ua|ru|pl|en)/([-a-zA-Z0-9/]+)/([-a-zA-Z0-9]+).(gif|png|css)/?$ $2/$3.$4 [L,QSA]
+
+#RewriteRule ^contacts.html$ index.php?page=contacts [L,QSA]
+#RewriteRule ^howItWorks.html$ index.php?page=howItWorks [L,QSA]
+#RewriteRule ^download.html$ index.php?page=download [L,QSA]
+#RewriteRule ^home.html$ index.php [L,QSA]
