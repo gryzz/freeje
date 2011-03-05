@@ -1,0 +1,19 @@
+#sticker {
+    background: url('../img/sticker.png');
+    width: 260px;
+    height: 200px;
+    position: absolute;
+    top: 40px;
+    left: -5px;
+    z-index: 100;
+}
+#placeholder.sticker #left {
+    top: 240px;
+}
+#placeholder.sticker .pages h1 {
+    margin-left: 100px;
+}
+#placeholder.sticker #spacer {
+    width: 120px;
+    height: 100px;
+}

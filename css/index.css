@@ -1,0 +1,335 @@
+body {
+    background: #fff;
+    font-family: sans-serif;
+}
+
+#placeholder {
+    width: 920px;
+    margin: 0 auto;
+    position: relative;
+}
+
+#logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+#menu {
+    margin-left: 240px;
+}
+    #menu ul {
+        height: 60px;
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+        list-style: none;
+    }
+        #menu ul li {
+            display: inline-block;
+        }
+            #menu ul li a {
+                font-weight: bold;
+                font-size: 14px;
+                display: block;
+                text-decoration: none;
+                padding: 17px 9px 30px 9px;
+                color: #6d6d6d;
+            }
+            #menu ul li a.active,
+            #menu ul li a:hover {
+                background: #f3811e;
+                color: #fff;
+            }
+
+#langs {
+    position: absolute;
+    top: 0;
+    right: -40px;
+}
+    #langs ul {
+        height: 30px;
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+        list-style: none;
+    }
+        #langs ul li {
+            display: inline-block;
+        }
+            #langs ul li a {
+                font-weight: bold;
+                font-size: 10px;
+                display: block;
+                text-decoration: none;
+                padding: 7px 2px 2px 2px;
+                color: #6d6d6d;
+            }
+            #langs ul li a.active,
+            #langs ul li a:hover {
+                background: #f3811e;
+                color: #fff;
+            }
+
+#left {
+    position: absolute;
+    left: 0;
+    top: 90px;
+    width: 125px;
+}
+    #left form {
+        padding: 0;
+        margin: 0;
+        width: 110px;
+    }
+        #left form input {
+            width: 108px;
+            border: 1px solid #f67f2d;
+            margin-bottom: 12px;
+        }
+        #left form#login a {
+            display: block;
+            margin: 0 auto 12px auto;
+            text-decoration: none;
+            font-size: 12px;
+            text-align: center;
+        }
+            #left form#login a.enter {
+                text-align: left;
+                background: url('../img/enter.png') no-repeat;
+                height: 18px;
+                line-height: 18px;
+                padding-left: 12px;
+                color: #fff;
+                width: 70px;
+            }
+            #left form#login a.black {
+                color: #000;
+            }
+            #left form#login a.orange {
+                color: #f4882b;
+            }
+                #left form#login a.black:hover,
+                #left form#login a.orange:hover {
+                    text-decoration: underline;
+                }
+    #left form#callCost {
+        color: #808284;
+    }
+        #left form#callCost h5 {
+            text-align: center;
+            padding: 2px 0;
+            margin: 15px -15px 10px 0;
+            background: #f4882b;
+            color: #fff;
+        }
+        #left form#callCost h6 {
+            color: #f4882b;
+            font-weight: bold;
+            font-size: 14px;
+            font-style: italic;
+            margin: -10px 0 0 0;
+            padding: 0;
+        }
+        #left form#callCost input {
+            margin-top: 5px;
+        }
+        #left form#callCost label {
+            font-size: 11px;
+        }
+            #left form#callCost label small {
+                font-size: 9px;
+            }
+            
+#right {
+    position: absolute;
+    right: 0px;
+    top: 60px;
+    width: 110px;
+}
+
+    #right h4 {
+        text-align: right;
+        font-weight: normal;
+        font-size: 14px;
+        margin: 0px 0 10px 0;
+        background: #f4882b;
+        color: #fff;
+        padding-right: 5px;
+    }
+    
+    #right ul {
+        list-style: none;
+        margin: 0px;
+        padding: 0px;
+    }
+        #right ul li a {
+            background: url('../img/app.png') center top no-repeat;
+            display: block;
+            padding-top: 70px;
+            margin-bottom: 10px;
+            width: 110px;
+            text-align: center;
+            font-size: 11px;
+            color: #6d6d6d;
+            text-decoration: none;
+        }
+            #right ul li a b {
+                font-size: 12px;
+                color: #333232;
+            }
+
+        #right ul li a:hover {
+            background-image: url('../img/appDownload.png');
+        }
+        #right ul li a:hover,
+        #right ul li a:hover b {
+            color: #f5821f;
+        }
+
+#content {
+    height: 550px;
+    width: 683px;
+    border: 1px solid #c9cfd2;
+    background: #fff;
+    margin: 0 110px 0 125px;
+    position: relative;
+}
+    #content .pages {
+        padding: 10px 20px;
+        font-size: 12px;
+    }
+        #content .pages h1 {
+            margin: 0px 0 20px 0;
+            padding: 5px 0 15px 0;
+            border-bottom: 1px solid #f3811e;
+            color: #6d6d6d;
+            font-size: 14px;
+        }
+        
+            #content .pages h1 a {
+                margin-right: 40px;
+                color: #6d6d6d;
+                text-decoration: none;
+            }
+                #content .pages h1 a:hover {
+                    color: #f3811e;
+                    text-decoration: underline;
+                }
+        
+        #content .pages .caption {
+            font-size: 14px;
+        }
+
+    #content .leftTop,
+    #content .leftMiddle,
+    #content .leftBottom,
+    #content .rightTop,
+    #content .rightMiddle,
+    #content .rightBottom {
+        position: absolute;
+        width: 25px;
+    }
+        #content .leftTop,
+        #content .leftMiddle,
+        #content .leftBottom {
+            left: -25px;
+        }
+        #content .rightTop,
+        #content .rightMiddle,
+        #content .rightBottom {
+            right: -25px;
+        }
+            #content .leftTop,
+            #content .rightTop {
+                height: 69px;
+                top: 0px;
+            }
+            #content .leftBottom,
+            #content .rightBottom {
+                height: 70px;
+                bottom: 0px;
+            }
+            #content .leftMiddle,
+            #content .rightMiddle {
+                height: 100%;
+            }
+    #content .topMiddle,
+    #content .topLeft,
+    #content .topRight,
+    #content .bottomMiddle,
+    #content .bottomLeft,
+    #content .bottomRight {
+        position: absolute;
+        height: 25px;
+    }
+        #content .topMiddle,
+        #content .topLeft,
+        #content .topRight {
+            top: -25px;
+        }
+        #content .bottomMiddle,
+        #content .bottomLeft,
+        #content .bottomRight {
+            bottom: -25px;
+        }
+            #content .topMiddle,
+            #content .bottomMiddle {
+                width: 100%;
+            }
+            #content .topLeft,
+            #content .bottomLeft {
+                width: 119px;
+                left: 0px;
+            }
+            #content .topRight,
+            #content .bottomRight {
+                width: 120px;
+                right: 0px;
+            }    
+        #content .topMiddle {
+            background:url('../img/topMiddle.gif') repeat-x;
+        }
+        #content .topLeft {
+            background:url('../img/topLeft.gif');
+        }
+        #content .topRight {
+            background:url('../img/topRight.gif');
+        }
+        #content .bottomMiddle {
+            background:url('../img/bottomMiddle.gif') repeat-x;
+        }
+        #content .bottomLeft {
+            background:url('../img/bottomLeft.gif');
+        }
+        #content .bottomRight {
+            background:url('../img/bottomRight.gif');
+        }
+        #content .leftTop {
+            background:url('../img/leftTop.gif');
+        }
+        #content .leftMiddle {
+            background:url('../img/leftMiddle.gif') repeat-y;
+        }
+        #content .leftBottom {
+            background:url('../img/leftBottom.gif');
+        }
+        #content .rightTop {
+            background:url('../img/rightTop.gif');
+        }
+        #content .rightMiddle {
+            background:url('../img/rightMiddle.gif') repeat-y;
+        }
+        #content .rightBottom {
+            background:url('../img/rightBottom.gif');
+        }
+
+#footer {
+    padding: 10px 0;
+    width: 685px;
+    margin: 0 110px 0 125px;
+    text-align: center;
+    color: #999;
+    font-size: 12px;
+}

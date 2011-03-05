@@ -1,0 +1,56 @@
+.download ul {
+    margin: 0px;
+    padding: 0px;
+}
+    .download ul li {
+        display: inline-block;
+        background: url('../img/download.gif') no-repeat;
+        width: 190px;
+        margin-bottom: 20px;
+        padding: 10px;
+        font-size: 10px;
+    }
+        .download ul li img {
+            margin-left: 10px;
+        }
+        
+        .download ul li h5 {
+            font-size: 9px;
+        }
+            .download ul li h5 b {
+                font-size: 11px;
+            }
+        .download a.download {
+            display: inline-block;
+            text-align: left;
+            text-decoration: none;
+            background: url('../img/download.png') no-repeat;
+            height: 18px;
+            line-height: 18px;
+            font-size: 9px;
+            padding-left: 7px;
+            color: #fff;
+            width: 82px;
+        }
+        .download a.install {
+            float: right;
+            display: inline-block;
+            text-align: left;
+            text-decoration: none;
+            background: url('../img/install.png') no-repeat;
+            height: 14px;
+            line-height: 14px;
+            font-size: 9px;
+            padding-left: 7px;
+            color: #fff;
+            width: 60px;
+        }
+        
+        
+.contacts p {
+    line-height: 30px;
+}
+
+.contacts span.orange {
+    color: #f3811e;
+}
