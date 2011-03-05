@@ -6,12 +6,18 @@ require_once PATH_PRESENTATION . 'IndexPage/UserCabinetResponse.php';
 require_once PATH_PRESENTATION . 'IndexPage/RegistrationComponent.php';
 require_once PATH_PRESENTATION . 'IndexPage/StaticContentComponent.php';
 require_once PATH_APPLICATION . 'Caller.php';
+require_once PATH_APPLICATION . 'Translator.php';
 
 require_once ROOT . 'propel/runtime/lib/Propel.php';
 
 class IndexPage implements IPage {
 
     const DEFAULT_LANGUAGE = 'ua';
+
+    const HOME_PAGE_TITLE = 'Home Page';
+    const DOWNLOAD_PAGE_TITLE = 'Download';
+    const CONTACTS_PAGE_TITLE = 'Contacts';
+    const HOW_IT_WORKS_PAGE_TITLE = 'How it works';
     
     private $isLogined = false;
     private $request;
@@ -70,7 +76,7 @@ class IndexPage implements IPage {
             $response->addChild('mainContent', $contentComponent->execute($this->request->getPage()));
 
             $response->setPage($this->request->getPage());
-
+            $response->setTitle($this->getTitle());
 
 
             //TODO: Fix it
@@ -100,5 +106,27 @@ class IndexPage implements IPage {
         }
 
         return $_SESSION['language'];
+    }
+
+    public function getTitle() {
+        $translator = Translator::getInstance();
+
+        switch ($this->request->getPage()) {
+            case 'home':
+                return $translator->getLable(self::HOME_PAGE_TITLE);
+                break;
+
+            case 'howItWorks':
+                return $translator->getLable(self::HOW_IT_WORKS_PAGE_TITLE);
+                break;
+
+            case 'download':
+                return $translator->getLable(self::DOWNLOAD_PAGE_TITLE);
+                break;
+
+            case 'contacts':
+                return $translator->getLable(self::CONTACTS_PAGE_TITLE);
+                break;
+        }
     }
 }

@@ -12,6 +12,7 @@ class IndexResponse extends  ResponseBase {
             'isLogined',
             'error',
             'content',
+            'title',
             'language',
             'activationMessage',
             'userCabinet',
@@ -39,6 +40,10 @@ class IndexResponse extends  ResponseBase {
 
     public function setLanguage($language) {
         $this->set('language', $language);
+    }
+
+    public function setTitle($title) {
+        $this->set('title', $title);
     }
 }
 ?>
