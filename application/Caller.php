@@ -1,5 +1,6 @@
 <?php
 require_once PATH_CALLS . 'UserLogin.php';
+require_once PATH_CALLS . 'UserLogout.php';
 require_once PATH_CALLS . 'WhoAmI.php';
 require_once PATH_CALLS . 'UserRegister.php';
 require_once PATH_CALLS . 'GetLatestRegistrationRespond.php';
@@ -44,6 +45,21 @@ class Caller {
         if ($result) {
             $this->setSessionCookie();
         }
+
+        return $result;
+    }
+
+    public function makeLogoutCall() {
+        $logoutCall = new UserLogout();
+
+        $url = $logoutCall->createCallUrl();
+        $curlConnection = curl_init();
+
+        $options = $this->createCallOptions($url);
+        $options[CURLOPT_COOKIE] = "A2BSesIdentClients=" . $_COOKIE['A2BSesIdentClients'];
+        curl_setopt_array($curlConnection, $options);
+        $result = json_decode(curl_exec($curlConnection));
+
 
         return $result;
     }

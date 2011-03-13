@@ -54,3 +54,30 @@
 .contacts span.orange {
     color: #f3811e;
 }
+
+.form {
+    line-height: 30px;
+}
+
+.profile .form {
+    margin-top: -10px;
+}
+
+.install table {
+    margin-left: 100px;
+}
+.install table td {
+    vertical-align: top;
+    padding: 0 5px 20px 5px;
+}
+
+.install .manual {
+    position: relative;
+}
+
+.install .item {
+    position: absolute;
+    left: 0px;
+    top: 120px;
+    width: 80px;
+}

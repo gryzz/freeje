@@ -37,6 +37,7 @@ body {
                 padding: 17px 9px 30px 9px;
                 color: #6d6d6d;
             }
+
             #menu ul li a.active,
             #menu ul li a:hover {
                 background: #f3811e;
@@ -83,19 +84,22 @@ body {
         margin: 0;
         width: 110px;
     }
-        #left form input {
+        #left form input,
+        .form input {
             width: 108px;
             border: 1px solid #f67f2d;
             margin-bottom: 12px;
         }
-        #left form#login a {
+        #left form#login a,
+        .form a.enter {
             display: block;
             margin: 0 auto 12px auto;
             text-decoration: none;
             font-size: 12px;
             text-align: center;
         }
-            #left form#login a.enter {
+            #left form#login a.enter,
+            .form a.enter {
                 text-align: left;
                 background: url('../img/enter.png') no-repeat;
                 height: 18px;
@@ -103,6 +107,12 @@ body {
                 padding-left: 12px;
                 color: #fff;
                 width: 70px;
+            }
+            .form a.enter {
+                display: inline-block;
+                letter-spacing: -1px;
+                font-size: 11px;
+                padding-left: 9px;
             }
             #left form#login a.black {
                 color: #000;
@@ -189,7 +199,7 @@ body {
         }
 
 #content {
-    height: 550px;
+    min-height: 550px;
     width: 683px;
     border: 1px solid #c9cfd2;
     background: #fff;
@@ -206,6 +216,18 @@ body {
             border-bottom: 1px solid #f3811e;
             color: #6d6d6d;
             font-size: 14px;
+        }
+        h2 {
+            margin: 20px 0 20px 0;
+            padding: 15px 0 5px 0;
+            border-top: 1px solid #f3811e;
+            color: #6d6d6d;
+            font-size: 14px;
+        }
+        h3 {
+            color: #6d6d6d;
+            font-size: 14px;
+            margin-left: 100px;
         }
         
             #content .pages h1 a {

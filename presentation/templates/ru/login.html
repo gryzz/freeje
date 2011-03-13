@@ -1,8 +1,9 @@
-<form id="login">
-    <input type="text" value="логін" />
-    <input type="password" value="••••••" />
+<form id="login" method="POST">
+    <input type="hidden" name="form_posted" value="true">
+    <input name="email" type="text" value="callermatetest@gmail.com" />
+    <input name="password" type="password" value="2156987492" />
     <a href="#" class="enter" onclick="document.getElementById('login').submit();">Вхід</a>
     <a href="#" class="black">відновити пароль</a>
-    <a href="#" class="orange">реєстрація</a>
+    <a href="registration.html" class="orange">реєстрація</a>
     <hr />
 </form>

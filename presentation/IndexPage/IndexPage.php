@@ -34,7 +34,6 @@ class IndexPage implements IPage {
             $caller = Caller::getInstance();
 
             $isLogined = $caller->makeWhoAmICall();
-
             if ($isLogined) {
                 $this->isLogined = $isLogined;
             } elseif ($this->request->isFormPosted()) {
@@ -72,13 +71,7 @@ class IndexPage implements IPage {
 
             $response->addChild('userCabinet', $userCabinet);
 
-            $contentComponent = new StaticContentComponent();
-            $response->addChild('mainContent', $contentComponent->execute($this->request->getPage()));
-
-            $response->setPage($this->request->getPage());
-            $response->setTitle($this->getTitle());
-
-
+            
             //TODO: Fix it
             switch ($this->request->getPage()) {
                 case 'registration' :
@@ -86,13 +79,27 @@ class IndexPage implements IPage {
                         $registrationComponent = new RegistrationComponent();
                         $registrationResponse = $registrationComponent->execute();
 
-                        $response->addChild('content', $registrationResponse);
+                        $response->addChild('mainContent', $registrationResponse);
                     }
                     break;
 
-               case 'activate' :
-                   $response->setActivationMessage('User Activated');
-                   break;
+                case 'activate' :
+                    $response->setActivationMessage('User Activated');
+                    break;
+
+                case 'logout' :
+                    session_destroy();
+                    $caller->makeLogoutCall();
+                    header('Location: ' . WWW_ROOT);
+                    break;
+
+                default:
+                    $contentComponent = new StaticContentComponent();
+                    $response->addChild('mainContent', $contentComponent->execute($this->request->getPage()));
+
+                    $response->setPage($this->request->getPage());
+                    $response->setTitle($this->getTitle());
+                    break;
             }
 
             return $response;

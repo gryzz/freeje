@@ -3,6 +3,7 @@ require_once PATH_PRESENTATION . 'common/ComponentBase.php';
 require_once PATH_PRESENTATION . 'IndexPage/RegistrationRequest.php';
 require_once PATH_PRESENTATION . 'IndexPage/RegistrationResponse.php';
 require_once PATH_APPLICATION . 'Caller.php';
+require_once PATH_APPLICATION . 'Translator.php';
 
 class RegistrationComponent extends ComponentBase {
     
@@ -18,10 +19,10 @@ class RegistrationComponent extends ComponentBase {
                         $request->getPhone(),
                         $request->getFirstname(),
                         $request->getLastname(),
-                        $request->getAddress(),
-                        $request->getCity(),
+                        '',
+                        '',
                         222,
-                        $request->getPostcode()
+                        ''
                     );
             
             if ($freejeId) {
@@ -32,23 +33,23 @@ class RegistrationComponent extends ComponentBase {
                 $user->setPhone($request->getPhone());
                 $user->setFirstname($request->getFirstname());
                 $user->setLastname($request->getLastname());
-                $user->setAddress($request->getAddress());
-                $user->setCity($request->getCity());
-                //It's brutal hack
-                $user->setCountry(222);
-                $user->setPostcode($request->getPostcode());
+
+                $response->setSuccessRegistration(true);
 
                 $user->save();
 
             } else {
+
+                $translator = Translator::getInstance();
+
                 $response->setEmail($request->getEmail());
                 $response->setPhone($request->getPhone());
                 $response->setFirstname($request->getFirstname());
                 $response->setLastname($request->getLastname());
-                $response->setAddress($request->getAddress());
-                $response->setCity($request->getCity());
-                $response->setCountry($request->getCountry());
-                $response->setPostcode($request->getPostcode());
+
+                $response->setSuccessRegistration(false);
+
+                $response->setError($translator->getLable('registration error'));
             }
         }
         

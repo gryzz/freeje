@@ -4,7 +4,7 @@ require_once PATH_PRESENTATION . 'common/ResponseBase.php';
 class RegistrationResponse extends  ResponseBase {
 
     public function __construct() {
-        parent::__construct('registration.tpl');
+        parent::__construct('registration.html');
 
         parent::declareVars(array(
             'email',
@@ -15,7 +15,8 @@ class RegistrationResponse extends  ResponseBase {
             'city',
             'country',
             'postcode',
-            'registrationError'
+            'registrationError',
+            'successRegistration'
             ));
 
     }
@@ -55,7 +56,10 @@ class RegistrationResponse extends  ResponseBase {
     public function setError($registrationError) {
         $this->set('registrationError', $registrationError);
     }
-    
+
+    public function setSuccessRegistration($successRegistration) {
+        $this->set('successRegistration', $successRegistration);
+    }
 }
 
 ?>

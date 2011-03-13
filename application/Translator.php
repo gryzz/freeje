@@ -23,7 +23,11 @@ class Translator {
             $this->loadLables();
         }
 
-        return $this->lables[$lable];
+        if (!$this->lables[$lable]) {
+            return $lable;
+        } else {
+            return $this->lables[$lable];
+        }
     }
 
     private function loadLables() {
