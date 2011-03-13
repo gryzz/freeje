@@ -5,6 +5,7 @@ require_once PATH_PRESENTATION . 'IndexPage/IndexResponse.php';
 require_once PATH_PRESENTATION . 'IndexPage/UserCabinetResponse.php';
 require_once PATH_PRESENTATION . 'IndexPage/RegistrationComponent.php';
 require_once PATH_PRESENTATION . 'IndexPage/StaticContentComponent.php';
+require_once PATH_PRESENTATION . 'TopUpComponent/TopUpComponent.php';
 require_once PATH_APPLICATION . 'Caller.php';
 require_once PATH_APPLICATION . 'Translator.php';
 
@@ -91,6 +92,11 @@ class IndexPage implements IPage {
                     session_destroy();
                     $caller->makeLogoutCall();
                     header('Location: ' . WWW_ROOT);
+                    break;
+
+                case 'topUp':
+                    $topUpComponent = new TopUpComponent();
+                    $response->addChild('mainContent', $topUpComponent->execute());
                     break;
 
                 default:
