@@ -70,6 +70,8 @@ class IndexPage implements IPage {
                 $userCabinet = new UserCabinetResponse(UserCabinetResponse::USER_LOGIN_TEMPLATE);
             }
 
+            $userCabinet->setPage($this->request->getPage());
+
             $response->addChild('userCabinet', $userCabinet);
 
             
@@ -96,17 +98,18 @@ class IndexPage implements IPage {
 
                 case 'topUp':
                     $topUpComponent = new TopUpComponent();
-                    $response->addChild('mainContent', $topUpComponent->execute());
+                    $response->addChild('mainContent', $topUpComponent->execute());                    
                     break;
 
                 default:
                     $contentComponent = new StaticContentComponent();
                     $response->addChild('mainContent', $contentComponent->execute($this->request->getPage()));
 
-                    $response->setPage($this->request->getPage());
-                    $response->setTitle($this->getTitle());
                     break;
             }
+
+            $response->setPage($this->request->getPage());
+            $response->setTitle($this->getTitle());
 
             return $response;
     }

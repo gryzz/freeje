@@ -9,8 +9,11 @@ class UserCabinetResponse extends  ResponseBase {
     public function __construct($template = self::USER_LOGIN_TEMPLATE) {
         parent::__construct($template);
 
-        parent::declareVars(array());
+        parent::declareVars(array('page'));
+    }
 
+    public function setPage($page) {
+        $this->set('page', $page);
     }
 }
 ?>
