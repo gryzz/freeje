@@ -81,3 +81,14 @@
     top: 120px;
     width: 80px;
 }
+
+#load {
+	display: none;
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	background: url(img/ajax-loader.gif);
+	width: 43px;
+	height: 11px;
+	text-indent: -9999em;
+}
