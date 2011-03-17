@@ -15,7 +15,7 @@ function getWebPage($ch, $url)
         CURLOPT_HEADER         => false,    // don't return headers
 //            CURLOPT_COOKIEJAR      => "/tmp/cookie.txt",
 //        CURLOPT_COOKIEFILE     => "cookie.txt",
-            CURLOPT_COOKIE         => "A2BSesIdentClients=3aa3138f987f9959d61e1d67625d3ff4",
+            CURLOPT_COOKIE         => "A2BSesIdentClients=bb3abc183de3dd84f318e309239e2586",
 //            CURLOPT_FOLLOWLOCATION => true,     // follow redirects
         CURLOPT_ENCODING       => "",       // handle all encodings
         CURLOPT_USERAGENT      => "spider", // who am i

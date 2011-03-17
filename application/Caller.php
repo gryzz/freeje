@@ -5,6 +5,10 @@ require_once PATH_CALLS . 'WhoAmI.php';
 require_once PATH_CALLS . 'UserRegister.php';
 require_once PATH_CALLS . 'GetLatestRegistrationRespond.php';
 require_once PATH_CALLS . 'ActivateUserByCode.php';
+require_once PATH_CALLS . 'GetPaymentMethods.php';
+require_once PATH_CALLS . 'GetPaymentUrl.php';
+require_once PATH_CALLS . 'GetLatestCheckOutId.php';
+require_once PATH_CALLS . 'GetPaymentForm.php';
 require_once PATH_APPLICATION . 'UserApplication.php';
 
 class Caller {
@@ -140,6 +144,67 @@ class Caller {
         } else {
             return 0;
         }
+    }
+
+    public function makeGetPaymentMethodsCall($amount) {
+        $getPaymentMethods = new GetPaymentMethods($amount);
+        $url = $getPaymentMethods->createCallUrl();
+
+        $curlConnection = curl_init();
+
+        $options = $this->createCallOptions($url);
+        $options[CURLOPT_COOKIE] = "A2BSesIdentClients=" . $_COOKIE['A2BSesIdentClients'];
+        curl_setopt_array($curlConnection, $options);
+        $result = json_decode(curl_exec($curlConnection), true);
+
+
+        return $result;
+    }
+
+    public function makeGetPaymentUrlCall($cardId, $amount, $request, $successUrl = 'home.html', $failUrl = 'home.html') {
+
+        $getPaymentUrl = new GetPaymentUrl($cardId, $amount, $request, $successUrl, $failUrl);
+        $url = $getPaymentUrl->createCallUrl();
+
+        $curlConnection = curl_init();
+
+        $options = $this->createCallOptions($url);
+        $options[CURLOPT_COOKIE] = "A2BSesIdentClients=" . $_COOKIE['A2BSesIdentClients'];
+        curl_setopt_array($curlConnection, $options);
+        $result = json_decode(curl_exec($curlConnection), true);
+
+
+        return $result;
+    }
+
+    public function makeGetLatestCheckOutIdCall() {
+
+        $getLatestCheckOutId = new GetLatestCheckOutId();
+        $url = $getLatestCheckOutId->createCallUrl();
+
+        $curlConnection = curl_init();
+
+        $options = $this->createCallOptions($url);
+        $options[CURLOPT_COOKIE] = "A2BSesIdentClients=" . $_COOKIE['A2BSesIdentClients'];
+        curl_setopt_array($curlConnection, $options);
+        $result = json_decode(curl_exec($curlConnection), true);
+
+        return $result[checkout_id];
+    }
+
+    public function makeGetPaymentFormCall($checkOutId) {
+
+        $getPaymentForm = new GetPaymentForm($checkOutId);
+        $url = $getPaymentForm->createCallUrl();
+
+        $curlConnection = curl_init();
+
+        $options = $this->createCallOptions($url);
+        $options[CURLOPT_COOKIE] = "A2BSesIdentClients=" . $_COOKIE['A2BSesIdentClients'];
+        curl_setopt_array($curlConnection, $options);
+        $result = json_decode(curl_exec($curlConnection), true);
+
+        return $result['form'];
     }
 
     public function createCallOptions($url) {
