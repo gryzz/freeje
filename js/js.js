@@ -26,6 +26,21 @@ $(document).ready(function() {
 
         return false;
     });
+
+    $('#registration').click(function(){
+        if (
+            $('#email').val() == '' ||
+            $('#phone').val() == '' ||
+            $('#firstname').val() == '' ||
+            $('#lastname').val() == ''
+        ) {
+                alert('Some fields are empty.');
+        } else {
+            $('#registrationForm').submit();
+        }
+
+        return false;
+    })
 });
 
 function setPaymentAmounts() {

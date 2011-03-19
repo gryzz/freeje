@@ -24,6 +24,13 @@ class ActivatePage implements IPage {
 
             $user->save();
 
+            $result = $caller->makeLoginCall($result['login'], $result['password']);
+
+
+            if ($result == "true") {
+                $_SESSION['id'] = $user->getId();
+            }            
+
             header('Location: ' . WWW_ROOT . '/?section=activate');
         }
 

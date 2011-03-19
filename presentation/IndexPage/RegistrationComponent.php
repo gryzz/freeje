@@ -49,7 +49,7 @@ class RegistrationComponent extends ComponentBase {
 
                 $response->setSuccessRegistration(false);
 
-                $response->setError($translator->getLable('registration error'));
+                $response->setError($translator->getLable('Registration error'));
             }
         }
         
