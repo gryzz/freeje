@@ -19,7 +19,7 @@ class ChangePasswordComponent extends ComponentBase {
             } else {
                 $caller = Caller::getInstance();
 
-                $result = $caller->makeChangePassowrdCall($request->getOldPassword(), $request->getNewPassword());
+                $result = $caller->makeChangePasswordCall($request->getOldPassword(), $request->getNewPassword());
 
                 if ($result) {
                     $user->setPassword($request->getNewPassword());

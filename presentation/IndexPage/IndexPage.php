@@ -7,6 +7,7 @@ require_once PATH_PRESENTATION . 'IndexPage/RegistrationComponent.php';
 require_once PATH_PRESENTATION . 'IndexPage/StaticContentComponent.php';
 require_once PATH_PRESENTATION . 'TopUpComponent/TopUpComponent.php';
 require_once PATH_PRESENTATION . 'ChangePasswordComponent/ChangePasswordComponent.php';
+require_once PATH_PRESENTATION . 'PasswordRecoveryComponent/PasswordRecoveryComponent.php';
 require_once PATH_APPLICATION . 'Caller.php';
 require_once PATH_APPLICATION . 'Translator.php';
 
@@ -95,6 +96,11 @@ class IndexPage implements IPage {
                     session_destroy();
                     $caller->makeLogoutCall();
                     header('Location: ' . WWW_ROOT);
+                    break;
+
+                case 'passwordRecovery':
+                    $passwordRecovery = new PasswordRecoveryComponent();
+                    $response->addChild('mainContent', $passwordRecovery->execute());
                     break;
 
                 case 'changePassword':

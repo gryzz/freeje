@@ -10,6 +10,7 @@ require_once PATH_CALLS . 'GetPaymentUrl.php';
 require_once PATH_CALLS . 'GetLatestCheckOutId.php';
 require_once PATH_CALLS . 'GetPaymentForm.php';
 require_once PATH_CALLS . 'ChangePassword.php';
+require_once PATH_CALLS . 'PasswordRecovery.php';
 require_once PATH_APPLICATION . 'UserApplication.php';
 
 class Caller {
@@ -207,7 +208,7 @@ class Caller {
         return $result['form'];
     }
 
-    public function makeChangePassowrdCall($oldPassword, $newPassword) {
+    public function makeChangePasswordCall($oldPassword, $newPassword) {
         $changePassword = new ChangePassword($oldPassword, $newPassword);
         $url = $changePassword->createCallUrl();
 
@@ -219,6 +220,20 @@ class Caller {
         $result = json_decode(curl_exec($curlConnection), true);
 
         return $result;
+    }
+
+    public function makePasswordRecoveryCall($recoveryField) {
+        $passwordRecovery = new PasswordRecovery($recoveryField);
+        $url = $passwordRecovery->createCallUrl();
+
+        $curlConnection = curl_init();
+
+        $options = $this->createCallOptions($url);
+        $options[CURLOPT_COOKIE] = "A2BSesIdentClients=" . $_COOKIE['A2BSesIdentClients'];
+        curl_setopt_array($curlConnection, $options);
+        $result = json_decode(curl_exec($curlConnection), true);
+
+        return $result['code'];
     }
 
     public function createCallOptions($url) {

@@ -41,6 +41,16 @@ $(document).ready(function() {
 
         return false;
     })
+
+    $('#passwordRecovery').click(function(){
+        if ($('#email').val() == '') {
+                alert('Field is empty.');
+        } else {
+            $('#passwordRecoveryForm').submit();
+        }
+
+        return false;
+    })
 });
 
 function setPaymentAmounts() {
