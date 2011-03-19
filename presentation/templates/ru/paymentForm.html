@@ -1,0 +1,11 @@
+<form method="post" id="paymentForm" action="<?=$action;?>" accept-charset="<?=charset;?>">
+    <?foreach ($fields as $name => $value):?>
+        <input type='hidden' name='<?=$name;?>' value='<?=$value;?>'>
+    <?endforeach;?>
+</form>
+
+<script>
+    $(document).ready(function() {
+        $('#paymentForm').submit();
+    })
+</script>
