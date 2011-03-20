@@ -11,6 +11,7 @@ require_once PATH_CALLS . 'GetLatestCheckOutId.php';
 require_once PATH_CALLS . 'GetPaymentForm.php';
 require_once PATH_CALLS . 'ChangePassword.php';
 require_once PATH_CALLS . 'PasswordRecovery.php';
+require_once PATH_CALLS . 'SetLanguage.php';
 require_once PATH_APPLICATION . 'UserApplication.php';
 
 class Caller {
@@ -149,6 +150,8 @@ class Caller {
     }
 
     public function makeGetPaymentMethodsCall($amount) {
+        $this->setLanguageCall();
+
         $getPaymentMethods = new GetPaymentMethods($amount);
         $url = $getPaymentMethods->createCallUrl();
 
@@ -159,8 +162,22 @@ class Caller {
         curl_setopt_array($curlConnection, $options);
         $result = json_decode(curl_exec($curlConnection), true);
 
+        return $result;
+    }
+
+    public function setLanguageCall() {
+        $setLanguage = new SetLanguage();
+        $url = $setLanguage->createCallUrl();
+
+        $curlConnection = curl_init();
+
+        $options = $this->createCallOptions($url);
+        $options[CURLOPT_COOKIE] = "A2BSesIdentClients=" . $_COOKIE['A2BSesIdentClients'];
+        curl_setopt_array($curlConnection, $options);
+        $result = json_decode(curl_exec($curlConnection), true);
 
         return $result;
+
     }
 
     public function makeGetPaymentUrlCall($cardId, $amount, $request, $successUrl = 'home.html', $failUrl = 'home.html') {
