@@ -180,7 +180,7 @@ class Caller {
 
     }
 
-    public function makeGetPaymentUrlCall($cardId, $amount, $request, $successUrl = 'home.html', $failUrl = 'home.html') {
+    public function makeGetPaymentUrlCall($cardId, $amount, $request, $successUrl = GetPaymentUrl::SUCCESS_URL, $failUrl = GetPaymentUrl::FAIILED_URL) {
 
         $getPaymentUrl = new GetPaymentUrl($cardId, $amount, $request, $successUrl, $failUrl);
         $url = $getPaymentUrl->createCallUrl();
