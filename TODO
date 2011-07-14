@@ -1,0 +1,3 @@
+- Create error handling after registration
+- Add minimal payment amount validation
+- Add 'waiting image' on TopUp page
