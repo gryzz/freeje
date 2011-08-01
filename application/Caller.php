@@ -32,23 +32,14 @@ class Caller {
         return self::$instance;
     }
 
-
     public function makeLoginCall($login, $password) {
-        $loginCall = new UserLogin($login, $password);
-        
+        $loginCall = new UserLogin($login, $password);        
         $url = $loginCall->createCallUrl();
-        $this->truncateJarFile();
         
-        $curlConnection = curl_init();
-        
-        $options = $this->createCallOptions($url);
-        $options[CURLOPT_COOKIEJAR] = $this->file;
-                
-        curl_setopt_array($curlConnection, $options);
-        $result = curl_exec($curlConnection);
+        $options = $this->createCallOptions($url, false);
+        $result = $this->curlCall($options);
 
-        curl_close($curlConnection);
-
+        //TODO: move it to presentation layer
         if ($result) {
             $this->setSessionCookie();
         }
@@ -58,15 +49,10 @@ class Caller {
 
     public function makeLogoutCall() {
         $logoutCall = new UserLogout();
-
         $url = $logoutCall->createCallUrl();
-        $curlConnection = curl_init();
 
         $options = $this->createCallOptions($url);
-        $options[CURLOPT_COOKIE] = "A2BSesIdentClients=" . $_COOKIE['A2BSesIdentClients'];
-        curl_setopt_array($curlConnection, $options);
-        $result = json_decode(curl_exec($curlConnection));
-
+        $result = $this->curlCall($options);
 
         return $result;
     }
@@ -75,13 +61,8 @@ class Caller {
         $whoAmICall = new WhoAmI();
         $url = $whoAmICall->createCallUrl();
 
-        $curlConnection = curl_init();
-
         $options = $this->createCallOptions($url);
-        $options[CURLOPT_COOKIE] = "A2BSesIdentClients=" . $_COOKIE['A2BSesIdentClients'];
-        curl_setopt_array($curlConnection, $options);
-        $result = json_decode(curl_exec($curlConnection));
-
+        $result = $this->curlCall($options);
 
         return $result;
     }
@@ -90,15 +71,8 @@ class Caller {
         $userRegistration = new UserRegister($email, $phone, $firstname, $lastname, $address, $city, $country, $postcode);
         $url = $userRegistration->createCallUrl();
 
-        $this->truncateJarFile();
-
-        $curlConnection = curl_init();
-        $options = $this->createCallOptions($url);
-        $options[CURLOPT_COOKIEJAR] = $this->file;
-        curl_setopt_array($curlConnection, $options);
-        $result = json_decode(curl_exec($curlConnection));
-
-        curl_close($curlConnection);
+        $options = $this->createCallOptions($url, false);
+        $result = $this->curlCall($options);
 
         $this->setSessionCookie();
 
@@ -114,13 +88,8 @@ class Caller {
         $latestRegistrationRespond = new GetLatestRegistrationRespond();
         $url = $latestRegistrationRespond->createCallUrl();
 
-        $curlConnection = curl_init();
         $options = $this->createCallOptions($url);
-        $options[CURLOPT_COOKIE] = "A2BSesIdentClients=" . $_COOKIE['A2BSesIdentClients'];
-        curl_setopt_array($curlConnection, $options);
-        $result = json_decode(curl_exec($curlConnection));
-
-        curl_close($curlConnection);
+        $result = $this->curlCall($options);
 
         return $result;
     }
@@ -129,13 +98,8 @@ class Caller {
         $activateUserByCode = new ActivateUserByCode($freejeId, $key, $ident, $type);
         $url = $activateUserByCode->createCallUrl();
 
-        $curlConnection = curl_init();
         $options = $this->createCallOptions($url);
-        $options[CURLOPT_COOKIE] = "A2BSesIdentClients=" . $_COOKIE['A2BSesIdentClients'];
-        curl_setopt_array($curlConnection, $options);
-        $result = json_decode(curl_exec($curlConnection));
-
-        curl_close($curlConnection);
+        $result = $this->curlCall($options);
 
         if ($result->code == 0) {
             $credentials = array();
@@ -155,12 +119,8 @@ class Caller {
         $getPaymentMethods = new GetPaymentMethods($amount);
         $url = $getPaymentMethods->createCallUrl();
 
-        $curlConnection = curl_init();
-
         $options = $this->createCallOptions($url);
-        $options[CURLOPT_COOKIE] = "A2BSesIdentClients=" . $_COOKIE['A2BSesIdentClients'];
-        curl_setopt_array($curlConnection, $options);
-        $result = json_decode(curl_exec($curlConnection), true);
+        $result = $this->curlCall($options);
 
         return $result;
     }
@@ -168,29 +128,20 @@ class Caller {
     public function setLanguageCall() {
         $setLanguage = new SetLanguage();
         $url = $setLanguage->createCallUrl();
-
-        $curlConnection = curl_init();
-
+        
         $options = $this->createCallOptions($url);
-        $options[CURLOPT_COOKIE] = "A2BSesIdentClients=" . $_COOKIE['A2BSesIdentClients'];
-        curl_setopt_array($curlConnection, $options);
-        $result = json_decode(curl_exec($curlConnection), true);
+        $result = $this->curlCall($options);
 
         return $result;
 
     }
 
     public function makeGetPaymentUrlCall($cardId, $amount, $request, $successUrl = GetPaymentUrl::SUCCESS_URL, $failUrl = GetPaymentUrl::FAIILED_URL) {
-
         $getPaymentUrl = new GetPaymentUrl($cardId, $amount, $request, $successUrl, $failUrl);
         $url = $getPaymentUrl->createCallUrl();
 
-        $curlConnection = curl_init();
-
         $options = $this->createCallOptions($url);
-        $options[CURLOPT_COOKIE] = "A2BSesIdentClients=" . $_COOKIE['A2BSesIdentClients'];
-        curl_setopt_array($curlConnection, $options);
-        $result = json_decode(curl_exec($curlConnection), true);
+        $result = $this->curlCall($options);
 
 
         return $result;
@@ -201,12 +152,8 @@ class Caller {
         $getLatestCheckOutId = new GetLatestCheckOutId();
         $url = $getLatestCheckOutId->createCallUrl();
 
-        $curlConnection = curl_init();
-
         $options = $this->createCallOptions($url);
-        $options[CURLOPT_COOKIE] = "A2BSesIdentClients=" . $_COOKIE['A2BSesIdentClients'];
-        curl_setopt_array($curlConnection, $options);
-        $result = json_decode(curl_exec($curlConnection), true);
+        $result = $this->curlCall($options);
 
         return $result[checkout_id];
     }
@@ -215,12 +162,8 @@ class Caller {
         $getPaymentForm = new GetPaymentForm($checkOutId);
         $url = $getPaymentForm->createCallUrl();
 
-        $curlConnection = curl_init();
-
         $options = $this->createCallOptions($url);
-        $options[CURLOPT_COOKIE] = "A2BSesIdentClients=" . $_COOKIE['A2BSesIdentClients'];
-        curl_setopt_array($curlConnection, $options);
-        $result = json_decode(curl_exec($curlConnection), true);
+        $result = $this->curlCall($options);
 
         return $result['form'];
     }
@@ -229,12 +172,8 @@ class Caller {
         $changePassword = new ChangePassword($oldPassword, $newPassword);
         $url = $changePassword->createCallUrl();
 
-        $curlConnection = curl_init();
-
         $options = $this->createCallOptions($url);
-        $options[CURLOPT_COOKIE] = "A2BSesIdentClients=" . $_COOKIE['A2BSesIdentClients'];
-        curl_setopt_array($curlConnection, $options);
-        $result = json_decode(curl_exec($curlConnection), true);
+        $result = $this->curlCall($options);
 
         return $result;
     }
@@ -243,17 +182,13 @@ class Caller {
         $passwordRecovery = new PasswordRecovery($recoveryField);
         $url = $passwordRecovery->createCallUrl();
 
-        $curlConnection = curl_init();
-
         $options = $this->createCallOptions($url);
-        $options[CURLOPT_COOKIE] = "A2BSesIdentClients=" . $_COOKIE['A2BSesIdentClients'];
-        curl_setopt_array($curlConnection, $options);
-        $result = json_decode(curl_exec($curlConnection), true);
+        $result = $this->curlCall($options);
 
         return $result['code'];
     }
 
-    public function createCallOptions($url) {
+    public function createCallOptions($url, $useCurrentSession = true) {
         $options = array(
             CURLOPT_URL            => $url,
             CURLOPT_RETURNTRANSFER => true,
@@ -268,6 +203,13 @@ class Caller {
             CURLINFO_HEADER_OUT    => true
         );
 
+        if ($useCurrentSession) {
+            $options[CURLOPT_COOKIE] = "A2BSesIdentClients=" . $_COOKIE['A2BSesIdentClients'];
+        } else {
+            $this->truncateJarFile();
+            $options[CURLOPT_COOKIEJAR] = $this->file;
+        }
+
         return $options;
     }
 
@@ -279,6 +221,17 @@ class Caller {
     public function truncateJarFile() {
         $fp = fopen($this->file, "w");
         fclose($fp);
+    }
+
+    private function curlCall($options) {
+        $curlConnection = curl_init();
+
+        curl_setopt_array($curlConnection, $options);
+        $result = json_decode(curl_exec($curlConnection), true);
+
+        curl_close($curlConnection);
+
+        return $result;
     }
 }
 
