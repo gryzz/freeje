@@ -1,19 +1,20 @@
 <?
 require_once PATH_PRESENTATION . 'common/RequestBase.php';
 
-class IndexRequest extends RequestBase {
-    
-    public function __construct() {
-        parent::__construct();
-        
-        parent::declareVars(array());
-    }
-    
+class IndexRequest extends RequestBase {    
     public function getPage() {
         if ($this->hasParameter('page')) {
             return $this->getParameter('page');
         }
         
+        return null;
+    }
+
+    public function getAction() {
+        if ($this->hasParameter('action')) {
+            return $this->getParameter('action');
+        }
+
         return null;
     }
 

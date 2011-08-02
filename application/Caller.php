@@ -12,12 +12,9 @@ require_once PATH_CALLS . 'GetPaymentForm.php';
 require_once PATH_CALLS . 'ChangePassword.php';
 require_once PATH_CALLS . 'PasswordRecovery.php';
 require_once PATH_CALLS . 'SetLanguage.php';
-require_once PATH_APPLICATION . 'UserApplication.php';
 
 class Caller {
-
-    private $options;
-    private $file = '/tmp/cookie.txt';
+    const CURL_SESSION_FILE = '/tmp/cookie.txt';
     private static $instance = null;
 
     private function  __construct() {
@@ -38,11 +35,6 @@ class Caller {
         
         $options = $this->createCallOptions($url, false);
         $result = $this->curlCall($options);
-
-        //TODO: move it to presentation layer
-        if ($result) {
-            $this->setSessionCookie();
-        }
 
         return $result;
     }
@@ -74,13 +66,6 @@ class Caller {
         $options = $this->createCallOptions($url, false);
         $result = $this->curlCall($options);
 
-        $this->setSessionCookie();
-
-        if (!$result) {
-            $error = $this->getLatestRegistrationRespond();
-            var_dump($error);
-        }
-
         return $result;
     }
 
@@ -104,12 +89,12 @@ class Caller {
         if ($result->code == 0) {
             $credentials = array();
 
-            $credentials['login'] = $result->info->login;
-            $credentials['password'] = $result->info->password;
+            $credentials['login'] = $result['info']['login'];
+            $credentials['password'] = $result['info']['password'];
 
             return $credentials;
         } else {
-            return 0;
+            return false;
         }
     }
 
@@ -211,11 +196,6 @@ class Caller {
         }
 
         return $options;
-    }
-
-    public function setSessionCookie() {
-        $userApp = new UserApplication();
-        $userApp->setCookieFromFile($this->file);
     }
 
     public function truncateJarFile() {

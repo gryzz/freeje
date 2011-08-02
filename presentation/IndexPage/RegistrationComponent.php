@@ -4,6 +4,7 @@ require_once PATH_PRESENTATION . 'IndexPage/RegistrationRequest.php';
 require_once PATH_PRESENTATION . 'IndexPage/RegistrationResponse.php';
 require_once PATH_APPLICATION . 'Caller.php';
 require_once PATH_APPLICATION . 'Translator.php';
+require_once PATH_APPLICATION . 'UserApplication.php';
 
 class RegistrationComponent extends ComponentBase {
     
@@ -37,6 +38,9 @@ class RegistrationComponent extends ComponentBase {
                 $response->setSuccessRegistration(true);
 
                 $user->save();
+
+                $userApp = new UserApplication();
+                $userApp->setCookieFromFile(Caller::CURL_SESSION_FILE);
 
             } else {
 

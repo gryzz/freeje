@@ -1,8 +1,8 @@
 <?
-require_once PATH_PRESENTATION . 'common/ComponentBase.php';
+require_once PATH_PRESENTATION . 'common/interfaces/IComponent.php';
 require_once PATH_PRESENTATION . 'IndexPage/StaticContentResponse.php';
 
-class StaticContentComponent extends ComponentBase {
+class StaticContentComponent implements IComponent {
 
     public function execute($page = null) {
         $response = new StaticContentResponse($this->getTemplate($page));

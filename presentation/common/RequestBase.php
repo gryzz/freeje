@@ -1,13 +1,7 @@
 <?
 require_once PATH_PRESENTATION_COMMON . 'VarContainer.php';
 
-class RequestBase {
-    protected $container;
-    
-    public function __construct() {
-        $this->container = new VarContainer(); 
-    }
-    
+class RequestBase {    
     /**
      * Defines var names
      *
@@ -39,6 +33,24 @@ class RequestBase {
      */
     public function getParameter($name) {
         return $_REQUEST[$name];
+    }
+
+    /**
+     * Gets session parameter
+     * @param string $key
+     * @return string
+     */
+    public function getSessionVar($key) {
+        return $_SESSION[$key];
+    }
+
+    /**
+     * Sets session parameter
+     * @param string $key
+     * @param string $value
+     */
+    public function setSessionVar($key, $value) {
+        $_SESSION[$key] = $value;
     }
     
     

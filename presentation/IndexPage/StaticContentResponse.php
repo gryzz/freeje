@@ -1,7 +1,7 @@
 <?
 require_once PATH_PRESENTATION . 'common/ResponseBase.php';
 
-class StaticContentResponse extends  ResponseBase {
+class StaticContentResponse extends ResponseBase {
 
     const HOME_PAGE_TEMPLATE = 'static/home.html';
     const CONTACTS_TEMPLATE = 'static/contacts.html';

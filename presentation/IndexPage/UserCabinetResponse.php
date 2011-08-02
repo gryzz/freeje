@@ -1,15 +1,18 @@
 <?
 require_once PATH_PRESENTATION . 'common/ResponseBase.php';
 
-class UserCabinetResponse extends  ResponseBase {
+class UserCabinetResponse extends ResponseBase {
+    private $isLoginedTemplates = array (
+        true => 'userCabinet.html',
+        false => 'login.html'
+    );
 
-    const USER_CABINET_TEMPLATE = 'userCabinet.html';
-    const USER_LOGIN_TEMPLATE = 'login.html';
-
-    public function __construct($template = self::USER_LOGIN_TEMPLATE) {
-        parent::__construct($template);
+    public function __construct($page, $isLogined = false) {
+        parent::__construct($this->isLoginedTemplates[$isLogined]);
 
         parent::declareVars(array('page'));
+
+         $this->set('page', $page);
     }
 
     public function setPage($page) {
