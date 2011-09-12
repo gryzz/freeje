@@ -51,7 +51,41 @@ $(document).ready(function() {
 
         return false;
     })
+    
+    $('#firstNumber').blur(function() {
+        getCallPrice();
+    })
+    
+    $('#secondNumber').blur(function() {
+        getCallPrice();
+    })
 });
+
+function getCallPrice() {
+    var firstNumber = $('#firstNumber').val()
+    var secondNumber = $('#secondNumber').val()
+    
+    if (firstNumber != '' && secondNumber != '') {
+        $.getJSON(
+            'ajaxJSON.php',  
+            {firstNumber: firstNumber, secondNumber: secondNumber},  
+            function(json) {
+                if (json.status == 'ok') {
+                    $('#callPrice').attr('value', json.data.price);
+                } else {
+                    if (json.data.error == 'firstNumber') {
+                        $('#firstNumber').attr('class', 'inputError');
+                    } else if (json.data.error == 'secondNumber') {
+                        $('#secondNumber').attr('class', 'inputError');
+                    } else {
+                        $('#firstNumber').attr('class', 'inputError');
+                        $('#secondNumber').attr('class', 'inputError');
+                    }
+                }
+            }  
+        );
+    }
+}
 
 function setPaymentAmounts() {
     $('#finalAmount').attr('value', finalPaymentAmounts[$('#paymentMethodSelect').val()]);
