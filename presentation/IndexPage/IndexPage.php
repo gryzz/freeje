@@ -21,6 +21,7 @@ class IndexPage implements IPage {
     private $titles = array(
         'home' => 'Home Page',
         'howItWorks' => 'How it works',
+        'FAQ' => 'FAQ',
         'download' => 'Download',
         'contacts' => 'Contacts'
     );
@@ -40,8 +41,15 @@ class IndexPage implements IPage {
      * @return IndexResponse
      */
     public function execute() {
-        $propel = Propel::init(PATH_PROPEL_CONF);
+        
+        try {
+            $propel = Propel::init(PATH_PROPEL_CONF);
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+        
         $translator = Translator::getInstance();
+        
 
         $response = new IndexResponse();
         $this->request = new IndexRequest();

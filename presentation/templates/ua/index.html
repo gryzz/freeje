@@ -17,7 +17,7 @@
         <div id="menu">
             <ul>
                 <li><a <?if (!isset($page) || $page == home):?>class="active"<?endif;?> href="home.html">Головна</a></li>
-                <li><a <?if ($page == howItWorks):?>class="active"<?endif;?>href="howItWorks.html">Про послугу</a></li>
+                <li><a <?if ($page == howItWorks || $page == FAQ):?>class="active"<?endif;?>href="howItWorks.html">Про послугу</a></li>
                 <li><a <?if ($page == download):?>class="active"<?endif;?>href="download.html">Завантажити</a></li>
                 <li><a <?if ($page == contacts):?>class="active"<?endif;?>href="contacts.html">Контакти</a></li>
             </ul>

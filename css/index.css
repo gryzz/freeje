@@ -248,6 +248,12 @@ body {
                     color: #f3811e;
                     text-decoration: underline;
                 }
+                
+            #content .pages h1 span {
+                margin-right: 40px;
+                color: #f3811e;
+                text-decoration: none;
+            }
         
         #content .pages .caption {
             font-size: 14px;
