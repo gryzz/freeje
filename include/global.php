@@ -21,14 +21,6 @@ define('WWW_ROOT', 'http://localhost/callermate');
 define('WWW_JS', WWW_ROOT . '/js/');
 define('WWW_ROOT_ADMIN', WWW_ROOT . '/admin');
 
-/**
- * Database connection
- */
-
-define('DB_SERVER', '');
-define('DB_USERNAME', 'root');
-define('DB_PASSWORD', 'root123');
-define('DB_NAME', 'denko');
 
 
 /**

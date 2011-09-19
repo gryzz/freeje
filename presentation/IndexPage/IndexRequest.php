@@ -1,7 +1,15 @@
 <?
 require_once PATH_PRESENTATION . 'common/RequestBase.php';
 
-class IndexRequest extends RequestBase {    
+class IndexRequest extends RequestBase {
+
+    /**
+     * @return IndexRequest
+     */
+    public function __construct() {
+
+    }
+
     public function getPage() {
         if ($this->hasParameter('page')) {
             return $this->getParameter('page');
@@ -34,6 +42,9 @@ class IndexRequest extends RequestBase {
         return null;
     }
 
+    /**
+     * @return bool
+     */
     public function isFormPosted() {
         return $this->hasParameter('form_posted');
     }

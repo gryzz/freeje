@@ -33,6 +33,9 @@ class IndexPage implements IPage {
         'topUp' => 'TopUpComponent'
     );
 
+    /**
+     * @var IndexRequest
+     */
     private $request;
 
 

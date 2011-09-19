@@ -22,6 +22,10 @@ class Caller {
 
     }
 
+    /**
+     * @static
+     * @return Caller
+     */
     public static function getInstance() {
         if (!self::$instance) {
             self::$instance = new Caller();
@@ -203,14 +207,14 @@ class Caller {
             $options[CURLOPT_COOKIE] = "A2BSesIdentClients=" . $_COOKIE['A2BSesIdentClients'];
         } else {
             $this->truncateJarFile();
-            $options[CURLOPT_COOKIEJAR] = $this->file;
+            $options[CURLOPT_COOKIEJAR] = self::CURL_SESSION_FILE;
         }
 
         return $options;
     }
 
     public function truncateJarFile() {
-        $fp = fopen($this->file, "w");
+        $fp = fopen(self::CURL_SESSION_FILE, "w");
         fclose($fp);
     }
 
