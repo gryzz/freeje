@@ -13,6 +13,7 @@ require_once PATH_CALLS . 'ChangePassword.php';
 require_once PATH_CALLS . 'PasswordRecovery.php';
 require_once PATH_CALLS . 'SetLanguage.php';
 require_once PATH_CALLS . 'GetCallBackCost.php';
+require_once PATH_CALLS . 'GetCallHistory.php';
 
 class Caller {
     const CURL_SESSION_FILE = '/tmp/cookie.txt';
@@ -181,6 +182,16 @@ class Caller {
     public function makeGetCallBackCostCall($firstNumber, $secondNumber, $firstType, $secondType) {
         $callBackCosts = new GetCallBackCost($firstNumber, $secondNumber, $firstType, $secondType);
         $url = $callBackCosts->createCallUrl();
+        
+        $options = $this->createCallOptions($url);
+        $result = $this->curlCall($options);
+        
+        return $result;
+    }
+    
+    public function makeGetCallHistory($dateFrom, $dateTo) {
+        $getCallHistory = new GetCallHistory($dateFrom, $dateTo);
+        $url = $getCallHistory->createCallUrl();
         
         $options = $this->createCallOptions($url);
         $result = $this->curlCall($options);

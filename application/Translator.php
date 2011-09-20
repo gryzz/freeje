@@ -10,6 +10,9 @@ class Translator {
 
     }
 
+    /**
+     * @return Translator
+     */
     public function getInstance() {
         if (!self::$instance) {
             self::$instance = new Translator();

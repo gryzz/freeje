@@ -6,6 +6,7 @@ require_once PATH_PRESENTATION . 'IndexPage/UserCabinetResponse.php';
 require_once PATH_PRESENTATION . 'IndexPage/RegistrationComponent.php';
 require_once PATH_PRESENTATION . 'IndexPage/StaticContentComponent.php';
 require_once PATH_PRESENTATION . 'TopUpComponent/TopUpComponent.php';
+require_once PATH_PRESENTATION . 'CallsHistoryComponent/CallsHistoryComponent.php';
 require_once PATH_PRESENTATION . 'ChangePasswordComponent/ChangePasswordComponent.php';
 require_once PATH_PRESENTATION . 'PasswordRecoveryComponent/PasswordRecoveryComponent.php';
 require_once PATH_APPLICATION . 'Caller.php';
@@ -30,7 +31,8 @@ class IndexPage implements IPage {
         'registration' => 'RegistrationComponent',
         'passwordRecovery' => 'PasswordRecoveryComponent',
         'changePassword' => 'ChangePasswordComponent',
-        'topUp' => 'TopUpComponent'
+        'topUp' => 'TopUpComponent',
+        'callsHistory' => 'CallsHistoryComponent'
     );
 
     /**
