@@ -2,7 +2,7 @@
 
 $ch      = curl_init();
 
-$page = getWebPage($ch, 'http://users.telecomax.net/cabapi/amfphp/json.php/service2.getCallBackCost/380676729097/380676729495/phone/phone');
+$page = getWebPage($ch, 'http://users.telecomax.net/cabapi/amfphp/json.php/service2.getCallBackCost/+38067629097/+38sac/phone/phone');
 
 var_dump(json_decode($page['content']));
 
