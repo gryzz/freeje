@@ -3,12 +3,6 @@ require_once PATH_PRESENTATION . 'common/RequestBase.php';
 
 class TopUpRequest extends RequestBase {
 
-    public function __construct() {
-        parent::__construct();
-
-        parent::declareVars(array());
-    }
-
     public function getAmount() {
         if ($this->hasParameter('amount')) {
             return $this->getParameter('amount');
