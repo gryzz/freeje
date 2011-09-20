@@ -63,6 +63,17 @@
     margin-top: -10px;
 }
 
+.profile table, td, th {
+    border: 1px solid #999999;
+    padding-left: 7px;
+    border-collapse: collapse;
+}
+
+.thCalls {
+    background: none repeat scroll 0 0 #F4882B;
+    color: #FFFFFF;
+}
+
 .install table {
     margin-left: 100px;
 }

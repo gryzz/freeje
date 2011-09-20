@@ -1,0 +1,43 @@
+<div class="pages profile">
+    <h1>Статистика дзвінків</h1>
+    <img id="spacer" src="img/sp.gif" align="left" />
+    <div class="form">
+        <form method="POST">
+            Date from: <input type="text" id="dateFrom" name="dateFrom" value="<?=$dateFrom;?>" readonly />
+            Date to: <input type="text" id="dateTo" name="dateTo" value="<?=$dateTo;?>" readonly />
+            <input type="submit" name="submit" value="Get History"/>
+        </form>
+    </div>
+
+    <?if ($data):?>
+    <table>
+        <tr>
+            <th class="thCalls">Початок</th>
+            <th class="thCalls">Тривалість</th>
+            <th class="thCalls">Номер абонента</th>
+            <th class="thCalls">Статус дзвінка</th>
+            <th class="thCalls">Вартість дзвінка</th>
+            <th class="thCalls">Оператор</th>
+        </tr>
+        <?foreach($data as $raw):?>
+            <tr>
+            <td><?=$raw['starttime'];?></td>
+            <td><?=$raw['sessiontime'];?></td>
+            <td><?=$raw['calledstation'];?></td>
+            <td><?=$raw['terminatecause'];?></td>
+            <td><?=$raw['sessionbill'];?></td>
+            <td><?=$raw['destination'];?></td>
+        </tr>
+        <?endforeach;?>
+    </table>
+    <?endif;?>
+
+    <script>
+        $(function() {
+            $( "#dateFrom" ).datepick();
+            $( "#dateTo" ).datepick();
+        });
+    </script>
+</div>
+
+
