@@ -61,7 +61,10 @@ class IndexPage implements IPage {
 
         $response->setLanguage($this->setupLanguage());
 
-        $this->handleActions();
+        /**
+         * @todo: Fix it
+         */
+        $response = $this->handleActions($response);
 
         $caller = Caller::getInstance();
 
@@ -131,7 +134,7 @@ class IndexPage implements IPage {
     }
 
     /**
-     * Logs out the user using logout call and destroing their session
+     * Logs out the user using logout call and destroying their session
      */
     private function logout() {
         $caller = Caller::getInstance();
@@ -144,7 +147,7 @@ class IndexPage implements IPage {
     /**
      * Handles page actions
      */
-    private function handleActions() {
+    private function handleActions($response) {
         switch ($this->request->getAction()) {
             case 'activate' :
                 $response->setActivationMessage('User Activated');
@@ -154,6 +157,8 @@ class IndexPage implements IPage {
                 $this->logout();
                 break;
         }
+
+        return $response;
     }
 
     /**
