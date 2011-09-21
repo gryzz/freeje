@@ -69,6 +69,17 @@
     border-collapse: collapse;
 }
 
+.registration .form {
+    margin-top: -10px;
+}
+
+.registration table, td, th {
+    margin-left: 100px;
+    border: 0px;
+    padding-left: 7px;
+    border-collapse: collapse;
+}
+
 .thCalls {
     background: none repeat scroll 0 0 #F4882B;
     color: #FFFFFF;

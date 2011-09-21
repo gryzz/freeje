@@ -1,4 +1,4 @@
-<div class="pages profile">
+<div class="pages registration">
     <h1>Реєстрація</h1>
     <img id="spacer" src="img/sp.gif" align="left" />
     <?if($successRegistration):?>
@@ -9,13 +9,27 @@
         <?endif;?>
         <form method="post" id="registrationForm" class="form">
             <input type="hidden" name="registration_form_posted" value="true">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            E-mail: &nbsp;<input name="email" id="email" size="20" <?if($email):?>value="<?=$email;?>"<?endif;?>><br/>
-            Телефон: &nbsp;<input name="phone" id="phone" size="20" <?if($phone):?>value="<?=$phone;?>"<?endif;?>> (формат - 11-15 символів, лише цифри)<br/>
-            Ім'я: &nbsp;<input name="firstname" id="firstname" size="20" <?if($firstname):?>value="<?=$firstname;?>"<?endif;?>><br/>
-            Прізвище: &nbsp;<input name="lastname" id="lastname" size="20" <?if($lastname):?>value="<?=$lastname;?>"<?endif;?>><br/>
-            <a href="#" id="registration" class="enter">Далі</a><br/>
+            <table>
+                <tr>
+                    <td>E-mail:</td>
+                    <td style='padding-top: 10px;'><input name="email" id="email" size="20" <?if($email):?>value="<?=$email;?>"<?endif;?>></td>
+                </tr>
+                <tr>
+                    <td>Телефон:</td>
+                    <td style='padding-top: 10px;'><input name="phone" id="phone" size="20" <?if($phone):?>value="<?=$phone;?>"<?endif;?>> (формат - 11-15 символів, лише цифри)</td>
+                </tr>
+                <tr>
+                    <td>Ім'я:</td>
+                    <td style='padding-top: 10px;'><input name="firstname" id="firstname" size="20" <?if($firstname):?>value="<?=$firstname;?>"<?endif;?>></td>
+                </tr>
+                <tr>
+                    <td>Прізвище:</td>
+                    <td style='padding-top: 10px;'><input name="lastname" id="lastname" size="20" <?if($lastname):?>value="<?=$lastname;?>"<?endif;?>></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><a href="#" id="registration" class="enter">Далі</a></td>
+                </tr>
+             </table>
         </form>
     <?endif;?>
 </div>
