@@ -23,4 +23,14 @@
       <column name="id" type="integer" required="true" primaryKey="true"/>
       <column name="name" type="varchar" required="true"/>
   </table>
+
+  <table name="payment_method" phpName="PaymentMethod">
+      <column name="id" type="varchar" required="true" primaryKey="true"/>
+      <column name="cours" type="double" required="true"/>
+      <column name="request" type="varchar" required="true"/>
+      <column name="description" type="varchar" required="true"/>
+      <column name="full_summ" type="integer" required="true"/>
+      <column name="type" type="varchar" required="true"/>
+      <column name="valute" type="varchar" required="true"/>
+  </table>
 </database>

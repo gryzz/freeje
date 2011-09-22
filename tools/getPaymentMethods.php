@@ -14,7 +14,7 @@ function getWebPage($ch, $url)
         CURLOPT_RETURNTRANSFER => true,     // return web page
         CURLOPT_HEADER         => false,    // don't return headers
         CURLOPT_ENCODING       => "",       // handle all encodings
-        CURLOPT_COOKIE         => "A2BSesIdentClients=9395416b87d4469359d26a93d87b0a4d",
+        CURLOPT_COOKIE         => "A2BSesIdentClients=e1b08ad7ebeb8a13dba8cbb6817a77f5",
         CURLOPT_USERAGENT      => "spider", // who am i
         CURLOPT_AUTOREFERER    => true,     // set referer on redirect
         CURLOPT_CONNECTTIMEOUT => 120,      // timeout on connect

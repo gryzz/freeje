@@ -46,7 +46,7 @@ class IndexPage implements IPage {
      * @return IndexResponse
      */
     public function execute() {
-        
+
         try {
             $propel = Propel::init(PATH_PROPEL_CONF);
         } catch (Exception $e) {
@@ -62,7 +62,7 @@ class IndexPage implements IPage {
         $response->setLanguage($this->setupLanguage());
 
         /**
-         * @todo: Fix it
+         * @todo fix it
          */
         $response = $this->handleActions($response);
 

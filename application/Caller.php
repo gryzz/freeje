@@ -112,6 +112,7 @@ class Caller {
 
         $options = $this->createCallOptions($url);
         $result = $this->curlCall($options);
+//        printDump($result);
 
         return $result;
     }
@@ -127,7 +128,7 @@ class Caller {
 
     }
 
-    public function makeGetPaymentUrlCall($cardId, $amount, $request, $successUrl = GetPaymentUrl::SUCCESS_URL, $failUrl = GetPaymentUrl::FAIILED_URL) {
+    public function makeGetPaymentUrlCall($cardId, $amount, $request, $successUrl = GetPaymentUrl::SUCCESS_URL, $failUrl = GetPaymentUrl::FAILED_URL) {
         $getPaymentUrl = new GetPaymentUrl($cardId, $amount, $request, $successUrl, $failUrl);
         $url = $getPaymentUrl->createCallUrl();
 

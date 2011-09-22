@@ -2,7 +2,7 @@
 
 $ch      = curl_init();
 
-$page = getWebPage($ch, 'http://users.telecomax.net/cabapi/amfphp/json.php/service2.setLang/en');
+$page = getWebPage($ch, 'http://users.telecomax.net/cabapi/amfphp/json.php/service2.setLang/ru');
 
 var_dump(json_decode($page['content']));
 
@@ -15,7 +15,7 @@ function getWebPage($ch, $url)
         CURLOPT_HEADER         => false,    // don't return headers
 //            CURLOPT_COOKIEJAR      => "/tmp/cookie.txt",
 //        CURLOPT_COOKIEFILE     => "cookie.txt",
-            CURLOPT_COOKIE         => "A2BSesIdentClients=3aa3138f987f9959d61e1d67625d3ff4",
+            CURLOPT_COOKIE         => "A2BSesIdentClients=e1b08ad7ebeb8a13dba8cbb6817a77f5",
 //            CURLOPT_FOLLOWLOCATION => true,     // follow redirects
         CURLOPT_ENCODING       => "",       // handle all encodings
         CURLOPT_USERAGENT      => "spider", // who am i

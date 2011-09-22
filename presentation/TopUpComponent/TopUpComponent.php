@@ -5,6 +5,8 @@ require_once PATH_PRESENTATION . 'TopUpComponent/TopUpResponse.php';
 require_once PATH_PRESENTATION . 'TopUpComponent/SelectPaymentMethodResponse.php';
 require_once PATH_PRESENTATION . 'TopUpComponent/PaymentRedirectResponse.php';
 
+require_once ROOT . 'propel/runtime/lib/Propel.php';
+
 require_once PATH_APPLICATION . 'Caller.php';
 
 class TopUpComponent extends ComponentBase {
@@ -32,15 +34,19 @@ class TopUpComponent extends ComponentBase {
                 break;
 
             case 'selectPaymentMethod':
-                $caller = Caller::getInstance();
+                try {
+                    $propel = Propel::init(PATH_PROPEL_CONF);
+                } catch (Exception $e) {
+                    echo $e->getMessage();
+                }
 
-                $paymentData = $caller->makeGetPaymentMethodsCall($request->getAmount());
+                $paymentMethods = PaymentMethodPeer::doSelect(new Criteria());
 
-                $paymentMethods = $this->buildPaymentMethodsArray($paymentData['pay_methods']);
-                $finalPaymentAmounts = $this->buildFinalPaymentAmountsArray($paymentData['pay_methods']);
+                $paymentMethodsArray = $this->buildPaymentMethodsArray($paymentMethods, $request->getAmount());
+                $finalPaymentAmounts = $this->buildFinalPaymentAmountsArray($paymentMethods, $request->getAmount());
                 
                 $response = new SelectPaymentMethodResponse();
-                $response->setPaymentMethods($paymentMethods);
+                $response->setPaymentMethods($paymentMethodsArray);
                 $response->setFinalPaymentAmounts($finalPaymentAmounts);
                 break;
         }
@@ -49,25 +55,28 @@ class TopUpComponent extends ComponentBase {
         return $response;
     }
 
-    public function buildPaymentMethodsArray($data) {
-        $paymentMeythods = array();
+    public function buildPaymentMethodsArray($paymentMethods, $payAmount) {
+        $paymentMethodsArray = array();
 
-        foreach ($data as $paymentMethod) {
-            $paymentMeythods[$paymentMethod['request']] = $paymentMethod['description'] . '           ' . $paymentMethod['full_summ'] . ' ' . $paymentMethod['valute'];
+        foreach ($paymentMethods as $paymentMethod) {
+            $totalAmount = round($payAmount * $paymentMethod->getCours(), 2);
+            $paymentMethodsArray[$paymentMethod->getRequest()] = $paymentMethod->getDescription() . '           ' . $totalAmount . ' ' . $paymentMethod->getValute();
         }
 
-        return $paymentMeythods;
+        return $paymentMethodsArray;
     }
 
-    public function buildFinalPaymentAmountsArray($data) {
-        $paymentAmounts = array();
+    public function buildFinalPaymentAmountsArray($paymentMethods, $payAmount) {
+        $paymentMethodsArray = array();
 
-        foreach ($data as $paymentMethod) {
-            $paymentAmounts[$paymentMethod['request']]['amount'] = $paymentMethod['full_summ'];
-            $paymentAmounts[$paymentMethod['request']]['value'] = $paymentMethod['full_summ'] . ' ' . $paymentMethod['valute'];
+        foreach ($paymentMethods as $paymentMethod) {
+            $totalAmount = round($payAmount * $paymentMethod->getCours(), 2);
+
+            $paymentMethodsArray[$paymentMethod->getRequest()]['amount'] = $totalAmount;
+            $paymentMethodsArray[$paymentMethod->getRequest()]['value'] = $totalAmount . ' ' . $paymentMethod->getValute();
         }
 
-        return $paymentAmounts;
+        return $paymentMethodsArray;
     }
 
     public function getPaymentForm($request) {
@@ -76,6 +85,7 @@ class TopUpComponent extends ComponentBase {
         $caller = Caller::getInstance();
 
         $paymentUrl = $caller->makeGetPaymentUrlCall($user->getFreejeId(), $request->getFinalAmount(), $request->getPaymentMethod());
+
         $checkOutId = $caller->makeGetLatestCheckOutIdCall();
         $paymentForm = $caller->makeGetPaymentFormCall($checkOutId);
 
