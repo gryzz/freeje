@@ -8,6 +8,11 @@
           <dsn>mysql:host=localhost;dbname=callermate</dsn>
           <user>root</user>
           <password>root123</password>
+          <settings>
+              <charset>
+                  <value>utf8</value>
+              </charset>
+          </settings>
         </connection>
       </datasource>
     </datasources>
