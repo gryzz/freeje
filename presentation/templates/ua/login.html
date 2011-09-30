@@ -1,7 +1,10 @@
+<?if ($loginError):?>
+    <span class="error"><?=$loginError;?></span><br /><br />
+<?endif;?>
 <form id="login" method="POST">
     <input type="hidden" name="form_posted" value="true">
-    <input name="email" type="text" value="" />
-    <input name="password" type="password" value="" />
+    <input name="email" type="text" value="" <?if ($loginError):?>class="inputError"<?endif;?> />
+    <input name="password" type="password" value="" <?if ($loginError):?>class="inputError"<?endif;?> />
     <a href="#" class="enter" onclick="document.getElementById('login').submit();">Вхід</a>
     <a href="passwordRecovery.html" class="<?if ($page=='passwordRecovery'):?>orange<?else:?>black<?endif;?>">відновити пароль</a>
     <a href="registration.html" class="<?if ($page=='registration'):?>orange<?else:?>black<?endif;?>">реєстрація</a>

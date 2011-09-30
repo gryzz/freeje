@@ -10,13 +10,17 @@ class UserCabinetResponse extends ResponseBase {
     public function __construct($page, $isLogined = false) {
         parent::__construct($this->isLoginedTemplates[$isLogined]);
 
-        parent::declareVars(array('page'));
+        parent::declareVars(array('page', 'loginError'));
 
          $this->set('page', $page);
     }
 
     public function setPage($page) {
         $this->set('page', $page);
+    }
+
+    public function setLoginError($loginError) {
+        $this->set('loginError', $loginError);
     }
 }
 ?>

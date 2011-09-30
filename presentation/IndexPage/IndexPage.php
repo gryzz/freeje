@@ -74,14 +74,14 @@ class IndexPage implements IPage {
             $isLogined = $this->loginByPostedForm();
 
             if (!$isLogined) {
-                $response->setError("Login error");
+                $loginError = true;
             }
         } elseif (!$isLogined && $this->request->getSessionVar('id')) {
             $isLogined = $this->loginBySession();
 
-            if (!$isLogined) {
-                $response->setError("Login error");
-            }
+//            if (!$isLogined) {
+//                $response->setLoginError("Login error");
+//            }
         }
 
         $response->setIsLogined($isLogined);
@@ -90,6 +90,9 @@ class IndexPage implements IPage {
         $response->setPage($page);
 
         $userCabinet = new UserCabinetResponse($page, $isLogined);
+        if ($loginError) {
+            $userCabinet->setLoginError($translator->getLable("Login data is wrong"));
+        }
         $response->addChild('userCabinet', $userCabinet);
 
         $component = $this->createComponentByPage($page);

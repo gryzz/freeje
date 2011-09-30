@@ -81,6 +81,10 @@ body {
     top: 90px;
     width: 125px;
 }
+
+    #left .error {
+        font-size: 12px;
+    }
     #left form {
         padding: 0;
         margin: 0;
