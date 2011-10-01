@@ -18,7 +18,7 @@ class PasswordRecoveryComponent extends ComponentBase {
             $translator = Translator::getInstance();
 
             if ($code == 0) {
-                $response->setMessage($translator->getLable('Your password has been sent.'));
+                $response->setMessage($translator->getLable('Your password has been sent'));
             } else {
                 $response->setError($translator->getLable('Error occured, go back and try again'));
             }
