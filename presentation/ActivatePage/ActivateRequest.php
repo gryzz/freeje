@@ -3,12 +3,6 @@ require_once PATH_PRESENTATION . 'common/RequestBase.php';
 
 class ActivateRequest extends RequestBase {
 
-    public function __construct() {
-        parent::__construct();
-
-        parent::declareVars(array());
-    }
-
     public function getKey() {
         if ($this->hasParameter('key')) {
             return $this->getParameter('key');
