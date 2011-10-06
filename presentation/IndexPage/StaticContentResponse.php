@@ -6,6 +6,7 @@ class StaticContentResponse extends ResponseBase {
     const HOME_PAGE_TEMPLATE = 'static/home.html';
     const CONTACTS_TEMPLATE = 'static/contacts.html';
     const HOW_IT_WORKS_TEMPLATE = 'static/howItWorks.html';
+    const USER_ACTIVATED_TEMPLATE = 'static/userActivated.html';
     const FAQ_TEMPLATE = 'static/FAQ.html';
     const DOWNLOAD_TEMPLATE = 'static/download.html';
 

@@ -31,7 +31,7 @@ class ActivatePage implements IPage {
                 $_SESSION['id'] = $user->getId();
             }            
 
-            header('Location: ' . WWW_ROOT . '/?action=activate');
+            header('Location: ' . WWW_ROOT . '/userActivated.html');
         }
 
 

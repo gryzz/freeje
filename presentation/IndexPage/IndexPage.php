@@ -69,10 +69,7 @@ class IndexPage implements IPage {
         $caller = Caller::getInstance();
 
         $isLogined = (bool)$caller->makeWhoAmICall();
-//        if ($isLogined) {
-//            die('bingo!!!');
-//        }
-
+        
         if (!$isLogined && $this->request->isFormPosted()) {
             $isLogined = $this->loginByPostedForm();
 
@@ -161,12 +158,8 @@ class IndexPage implements IPage {
     /**
      * Handles page actions
      */
-    private function handleActions($response) {
+    private function handleActions(IndexResponse $response) {
         switch ($this->request->getAction()) {
-            case 'activate' :
-                $response->setActivationMessage('User Activated');
-                break;
-
             case 'logout' :
                 $this->logout();
                 break;

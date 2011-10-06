@@ -19,6 +19,10 @@ class StaticContentComponent implements IComponent {
             case 'howItWorks':
                 return StaticContentResponse::HOW_IT_WORKS_TEMPLATE;
                 break;
+
+            case 'userActivated':
+                return StaticContentResponse::USER_ACTIVATED_TEMPLATE;
+                break;
             
             case 'FAQ':
                 return StaticContentResponse::FAQ_TEMPLATE;
