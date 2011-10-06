@@ -69,6 +69,9 @@ class IndexPage implements IPage {
         $caller = Caller::getInstance();
 
         $isLogined = (bool)$caller->makeWhoAmICall();
+//        if ($isLogined) {
+//            die('bingo!!!');
+//        }
 
         if (!$isLogined && $this->request->isFormPosted()) {
             $isLogined = $this->loginByPostedForm();
@@ -142,8 +145,16 @@ class IndexPage implements IPage {
     private function logout() {
         $caller = Caller::getInstance();
 
-        session_destroy();
         $caller->makeLogoutCall();
+        setcookie('A2BSesIdentClients','', time() - 42);
+
+        $params = session_get_cookie_params();
+        setcookie(session_name(), '', time() - 42000, $params["path"], $params["domain"], $params["secure"], $params["httponly"]);
+
+        unset($_SESSION['id']);
+
+        session_destroy();
+
         header('Location: ' . WWW_ROOT);
     }
 
