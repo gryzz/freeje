@@ -52,14 +52,16 @@ class IndexPage implements IPage {
         } catch (Exception $e) {
             echo $e->getMessage();
         }
+
+        $this->request = new IndexRequest();
         
         $translator = Translator::getInstance();
-        
+
+        $language = $this->setupLanguage();
 
         $response = new IndexResponse();
-        $this->request = new IndexRequest();
 
-        $response->setLanguage($this->setupLanguage());
+        $response->setLanguage($language);
 
         /**
          * @todo fix it
