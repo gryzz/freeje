@@ -1,5 +1,5 @@
-#sticker {
-    background: url('../img/sticker.png');
+#sticker-ua {
+    background: url('../img/stickerua.png');
     width: 260px;
     height: 200px;
     position: absolute;
@@ -7,6 +7,17 @@
     left: -5px;
     z-index: 100;
 }
+
+#sticker-ru {
+    background: url('../img/stickerru.png');
+    width: 260px;
+    height: 200px;
+    position: absolute;
+    top: 40px;
+    left: -5px;
+    z-index: 100;
+}
+
 #placeholder.sticker #left {
     top: 240px;
 }
