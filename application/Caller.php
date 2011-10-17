@@ -16,10 +16,13 @@ require_once PATH_CALLS . 'GetCallBackCost.php';
 require_once PATH_CALLS . 'GetCallHistory.php';
 
 class Caller {
-    const CURL_SESSION_FILE = '/tmp/cookie.txt';
     private static $instance = null;
+    
+    public $cookieFile;
 
     private function  __construct() {
+        
+        $this->cookieFile = PATH_SESSIONS . session_id();
 
     }
 
@@ -219,14 +222,14 @@ class Caller {
             $options[CURLOPT_COOKIE] = "A2BSesIdentClients=" . $_COOKIE['A2BSesIdentClients'];
         } else {
             $this->truncateJarFile();
-            $options[CURLOPT_COOKIEJAR] = self::CURL_SESSION_FILE;
+            $options[CURLOPT_COOKIEJAR] = $this->cookieFile;
         }
 
         return $options;
     }
 
     public function truncateJarFile() {
-        $fp = fopen(self::CURL_SESSION_FILE, "w");
+        $fp = fopen($this->cookieFile, "w");
         fclose($fp);
     }
 

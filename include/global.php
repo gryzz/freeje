@@ -7,6 +7,7 @@ define('DEBUG_MODE', 1);
  */
 
 define('ROOT', '/var/www/callermate/');
+define('PATH_SESSIONS', ROOT . 'sessions/');
 define('PATH_DATABASE', ROOT . 'database/');
 define('PATH_PROPEL_CONF', ROOT . 'build/conf/callermate-conf.php');
 define('PATH_PRESENTATION', ROOT . 'presentation/');
@@ -17,7 +18,7 @@ define('PATH_BUSINESS', ROOT . 'business/');
 define('PATH_TEMPLATES', PATH_PRESENTATION . 'templates/');
 define('PATH_PRESENTATION_COMMON', PATH_PRESENTATION . 'common/');
 
-define('WWW_ROOT', 'http://localhost/callermate');
+define('WWW_ROOT', 'http://192.168.1.35/callermate');
 define('WWW_JS', WWW_ROOT . '/js/');
 define('WWW_ROOT_ADMIN', WWW_ROOT . '/admin');
 

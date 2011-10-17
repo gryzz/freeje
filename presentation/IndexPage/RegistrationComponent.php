@@ -40,7 +40,7 @@ class RegistrationComponent extends ComponentBase {
                 $user->save();
 
                 $userApp = new UserApplication();
-                $userApp->setCookieFromFile(Caller::CURL_SESSION_FILE);
+                $userApp->setCookieFromFile($caller->cookieFile);
 
             } else {
 

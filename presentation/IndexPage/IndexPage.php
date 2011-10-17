@@ -52,16 +52,14 @@ class IndexPage implements IPage {
         } catch (Exception $e) {
             echo $e->getMessage();
         }
-
-        $this->request = new IndexRequest();
         
         $translator = Translator::getInstance();
-
-        $language = $this->setupLanguage();
+        
 
         $response = new IndexResponse();
+        $this->request = new IndexRequest();
 
-        $response->setLanguage($language);
+        $response->setLanguage($this->setupLanguage());
 
         /**
          * @todo fix it
@@ -71,7 +69,7 @@ class IndexPage implements IPage {
         $caller = Caller::getInstance();
 
         $isLogined = (bool)$caller->makeWhoAmICall();
-        
+
         if (!$isLogined && $this->request->isFormPosted()) {
             $isLogined = $this->loginByPostedForm();
 
@@ -144,24 +142,20 @@ class IndexPage implements IPage {
     private function logout() {
         $caller = Caller::getInstance();
 
-        $caller->makeLogoutCall();
-        setcookie('A2BSesIdentClients','', time() - 42);
-
-        $params = session_get_cookie_params();
-        setcookie(session_name(), '', time() - 42000, $params["path"], $params["domain"], $params["secure"], $params["httponly"]);
-
-        unset($_SESSION['id']);
-
         session_destroy();
-
+        $caller->makeLogoutCall();
         header('Location: ' . WWW_ROOT);
     }
 
     /**
      * Handles page actions
      */
-    private function handleActions(IndexResponse $response) {
+    private function handleActions($response) {
         switch ($this->request->getAction()) {
+            case 'activate' :
+                $response->setActivationMessage('User Activated');
+                break;
+
             case 'logout' :
                 $this->logout();
                 break;
@@ -215,7 +209,9 @@ class IndexPage implements IPage {
      * Sets cookie from file
      */
     public function setSessionCookie() {
+        $caller = Caller::getInstance();
+        
         $userApp = new UserApplication();
-        $userApp->setCookieFromFile(Caller::CURL_SESSION_FILE);
+        $userApp->setCookieFromFile($caller->cookieFile);
     }
 }
