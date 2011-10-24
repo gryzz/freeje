@@ -105,7 +105,7 @@
 }
 
 .userContent {
-    overflow:auto;
+    overflow:scroll;
 }
 
 .TableTD3 {
