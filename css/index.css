@@ -243,21 +243,21 @@ body {
             margin-left: 100px;
         }
         
-            #content .pages h1 a {
-                margin-right: 40px;
-                color: #6d6d6d;
-                text-decoration: none;
-            }
-                #content .pages h1 a:hover {
-                    color: #f3811e;
-                    text-decoration: underline;
-                }
-                
-            #content .pages h1 span {
-                margin-right: 40px;
+        #content .pages h1 a {
+            margin-right: 40px;
+            color: #6d6d6d;
+            text-decoration: none;
+        }
+            #content .pages h1 a:hover {
                 color: #f3811e;
-                text-decoration: none;
+                text-decoration: underline;
             }
+
+        #content .pages h1 span {
+            margin-right: 40px;
+            color: #f3811e;
+            text-decoration: none;
+        }
         
         #content .pages .caption {
             font-size: 14px;

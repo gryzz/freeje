@@ -4,6 +4,7 @@ require_once PATH_PRESENTATION . 'TopUpComponent/TopUpRequest.php';
 require_once PATH_PRESENTATION . 'TopUpComponent/TopUpResponse.php';
 require_once PATH_PRESENTATION . 'TopUpComponent/SelectPaymentMethodResponse.php';
 require_once PATH_PRESENTATION . 'TopUpComponent/PaymentRedirectResponse.php';
+require_once PATH_PRESENTATION . 'TopUpComponent/PaymentUserContentResponse.php';
 
 require_once ROOT . 'propel/runtime/lib/Propel.php';
 
@@ -20,13 +21,17 @@ class TopUpComponent extends ComponentBase {
                 if ($request->isPaymentFormPosted()) {
                     
                     $paymentForm = $this->getPaymentForm($request);
+                    if ($paymentForm['UserContent']) {
+                        $response = new PaymentUserContentResponse();
+                        
+                        $response->setUserContent($paymentForm['UserContent']);
+                    } else {
+                        $response = new PaymentRedirectResponse();
 
-                    $response = new PaymentRedirectResponse();
-
-                    $response->setAction($paymentForm['FormAction']);
-                    $response->setCharset($paymentForm['encoding']);
-                    $response->setFields($paymentForm['Fields']);
-
+                        $response->setAction($paymentForm['FormAction']);
+                        $response->setCharset($paymentForm['encoding']);
+                        $response->setFields($paymentForm['Fields']);
+                    }
                 } else {
                     $response = new TopUpResponse();
                 }
@@ -85,7 +90,7 @@ class TopUpComponent extends ComponentBase {
         $caller = Caller::getInstance();
 
         $paymentUrl = $caller->makeGetPaymentUrlCall($user->getFreejeId(), $request->getFinalAmount(), $request->getPaymentMethod());
-
+        
         $checkOutId = $caller->makeGetLatestCheckOutIdCall();
         $paymentForm = $caller->makeGetPaymentFormCall($checkOutId);
 

@@ -104,6 +104,17 @@
     width: 80px;
 }
 
+.userContent {
+    overflow:auto;
+}
+
+.TableTD3 {
+    width: 100%;
+}
+    .TableTD3 td {
+        width: 100%;
+    }
+
 .error {
     color: red;
 }
