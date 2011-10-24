@@ -5,6 +5,8 @@ RewriteRule ^cabinet/signup/activate.php$ activate.php [L,QSA]
 
 RewriteRule ^logout.html/?$ index.php?action=logout [L,QSA]
 RewriteRule ^(ua|ru|pl|en)/logout.html/?$ index.php?action=logout [L,QSA]
+RewriteRule ^(ua|ru|pl|en)/ajax.php$ ajax.php [L,QSA]
+RewriteRule ^(ua|ru|pl|en)/ajaxJSON.php$ ajaxJSON.php [L,QSA]
 RewriteRule ^(ua|ru|pl|en)/([-a-zA-Z0-9]+).html/?$ index.php?language=$1&page=$2 [L,QSA]
 RewriteRule ^([-a-zA-Z0-9]+).html/?$ index.php?page=$1 [L,QSA]
 
