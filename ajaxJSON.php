@@ -17,7 +17,7 @@ if (ereg("[A-Za-z]", $secondNumber)) {
 $result = $caller->makeGetCallBackCostCall($firstNumber, $secondNumber, 'phone', $secondType);
 
 if ($result['code'] == 0) {
-    print "{status: 'ok', data: {price: '" . $result['cost'] . "'}}";
+    print '{"status": "ok", "data": {"price": "' . $result['cost'] . '"}}';
 } else {
     if ($result['code'] == 5) {
         $error = 'firstNumber';
@@ -27,7 +27,7 @@ if ($result['code'] == 0) {
         $error = 'bothNumbers';
     }
     
-    print "{status: 'error', data: {error: '" . $result['code'] . "'}}";
+    print '{"status": "error", "data": {"error": "' . $result['code'] . '"}}';
 }
 
 //print "{status: 'error', data: {error: 'bothNumber'}}";
