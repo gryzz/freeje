@@ -10,7 +10,8 @@ class CallsHistoryResponse extends ResponseBase {
             array(
                 'dateFrom',
                 'dateTo',
-                'data'
+                'data',
+                'message'
             )
         );
     }
@@ -25,6 +26,10 @@ class CallsHistoryResponse extends ResponseBase {
 
     public function setDateTo($dateTo) {
         $this->set('dateTo', $dateTo);
+    }
+    
+    public function setMessage($message) {
+        $this->set('message', $message);
     }
 
 }

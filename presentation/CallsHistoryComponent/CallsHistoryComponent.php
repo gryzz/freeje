@@ -16,6 +16,7 @@ class CallsHistoryComponent extends ComponentBase {
     public function execute() {
         $response = new CallsHistoryResponse();
         $request = new CallsHistoryRequest();
+        $translator = Translator::getInstance();
         
         if ($request->getDateFrom() and $request->getDateTo()) {
             $response->setDateFrom($request->getDateFrom());
@@ -27,23 +28,27 @@ class CallsHistoryComponent extends ComponentBase {
             $dateTo = $this->reformatDate($request->getDateTo());
             
             $result = $caller->makeGetCallHistory($dateFrom, $dateTo);
+            
+            if ($result) {
+                $translator = Translator::getInstance();
+                $data = array();
+                foreach ($result as $row) {
+                    $row['terminatecause'] = $translator->getLable($this->statusMap[$row['terminatecause']]);
+                    $row['sessionbill'] = round($row['sessionbill'], 2) . '$';
+                    $row['sessiontime'] = $row['sessiontime'] . ' ' . $translator->getLable('seconds');
 
-            $translator = Translator::getInstance();
-            $data = array();
-            foreach ($result as $row) {
-                $row['terminatecause'] = $translator->getLable($this->statusMap[$row['terminatecause']]);
-                $row['sessionbill'] = round($row['sessionbill'], 2) . '$';
-                $row['sessiontime'] = $row['sessiontime'] . ' ' . $translator->getLable('seconds');
+                    list($date, $time) = split(' ', $row['starttime']);
+                    list($year, $day, $month) = split('-', $date);
 
-                list($date, $time) = split(' ', $row['starttime']);
-                list($year, $day, $month) = split('-', $date);
+                    $row['starttime'] = $day . '/' . $month . '/' . $year . ' ' . $time;
 
-                $row['starttime'] = $day . '/' . $month . '/' . $year . ' ' . $time;
+                    $data[] = $row;
+                }
 
-                $data[] = $row;
+                $response->setData($data);
+            } else {
+                $response->setMessage($translator->getLable("No call history yet."));
             }
-
-            $response->setData($data);
         }
         
         return $response;
