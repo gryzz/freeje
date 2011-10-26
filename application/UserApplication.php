@@ -6,7 +6,7 @@ class UserApplication {
 
         $variables = explode("\t", trim($content[4]));
 
-        setcookie($variables[5], $variables[6]);
+        setcookie($variables[5], $variables[6], 0, '/');
         
         $_COOKIE[$variables[5]] = $variables[6];
     }
