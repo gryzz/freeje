@@ -5,7 +5,12 @@ class SelectPaymentMethodResponse extends ResponseBase {
      public function __construct() {
         parent::__construct('selectPaymentMethod.html');
 
-        parent::declareVars(array('paymentMethods', 'finalPaymentAmounts'));
+        parent::declareVars(array(
+            'paymentMethods', 
+            'finalPaymentAmounts', 
+            'amount'
+            )
+       );
     }
 
     public function setPaymentMethods($paymentMethods) {
@@ -14,6 +19,10 @@ class SelectPaymentMethodResponse extends ResponseBase {
 
     public function setFinalPaymentAmounts($finalPaymentAmounts) {
         $this->set('finalPaymentAmounts', $finalPaymentAmounts);
+    }
+    
+    public function setAmount($amount) {
+        $this->set('amount', $amount);
     }
 }
 

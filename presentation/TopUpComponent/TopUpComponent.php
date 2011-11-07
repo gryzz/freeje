@@ -53,6 +53,7 @@ class TopUpComponent extends ComponentBase {
                 $response = new SelectPaymentMethodResponse();
                 $response->setPaymentMethods($paymentMethodsArray);
                 $response->setFinalPaymentAmounts($finalPaymentAmounts);
+                $response->setAmount($request->getAmount());
                 break;
         }
         
@@ -77,7 +78,7 @@ class TopUpComponent extends ComponentBase {
         foreach ($paymentMethods as $paymentMethod) {
             $totalAmount = round($payAmount * $paymentMethod->getCours(), 2);
 
-            $paymentMethodsArray[$paymentMethod->getRequest()]['amount'] = $totalAmount;
+            $paymentMethodsArray[$paymentMethod->getRequest()]['amount'] = $payAmount;
             $paymentMethodsArray[$paymentMethod->getRequest()]['value'] = $totalAmount . ' ' . $paymentMethod->getValute();
         }
 
