@@ -120,8 +120,8 @@ class Caller {
         return $result;
     }
 
-    public function setLanguageCall() {
-        $setLanguage = new SetLanguage();
+    public function setLanguageCall($language = 'en') {
+        $setLanguage = new SetLanguage($language);
         $url = $setLanguage->createCallUrl();
         
         $options = $this->createCallOptions($url);
