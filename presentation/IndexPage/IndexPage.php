@@ -17,7 +17,7 @@ require_once ROOT . 'propel/runtime/lib/Propel.php';
 
 class IndexPage implements IPage {
 
-    const DEFAULT_LANGUAGE = 'ua';
+    const DEFAULT_LANGUAGE = 'ru';
 
     private $titles = array(
         'home' => 'Home Page',
@@ -116,10 +116,14 @@ class IndexPage implements IPage {
      * @return string
      */
     public function setupLanguage() {
+        $caller = Caller::getInstance();
+        
         if ($this->request->getSessionVar('language') != $this->request->getLanguage() && $this->request->getLanguage() != null) {
             $this->request->setSessionVar('language', $this->request->getLanguage());
+            $caller->setLanguageCall($this->request->getLanguage());
         } elseif (!$this->request->getSessionVar('language')) {
             $this->request->setSessionVar('language', self::DEFAULT_LANGUAGE);
+            $caller->setLanguageCall(self::DEFAULT_LANGUAGE);
         }
 
         return $this->request->getSessionVar('language');
