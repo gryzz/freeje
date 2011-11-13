@@ -121,6 +121,11 @@ class Caller {
     }
 
     public function setLanguageCall($language = 'en') {
+        //Brutal hack
+        if ($language == 'ua') {
+            $language = 'ru';
+        }
+        
         $setLanguage = new SetLanguage($language);
         $url = $setLanguage->createCallUrl();
         
@@ -134,7 +139,7 @@ class Caller {
     public function makeGetPaymentUrlCall($cardId, $amount, $request, $successUrl = GetPaymentUrl::SUCCESS_URL, $failUrl = GetPaymentUrl::FAILED_URL) {
         $getPaymentUrl = new GetPaymentUrl($cardId, $amount, $request, $successUrl, $failUrl);
         $url = $getPaymentUrl->createCallUrl();
-
+        
         $options = $this->createCallOptions($url);
         $result = $this->curlCall($options);
 
