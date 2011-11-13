@@ -17,7 +17,7 @@ require_once ROOT . 'propel/runtime/lib/Propel.php';
 
 class IndexPage implements IPage {
 
-    const DEFAULT_LANGUAGE = 'ru';
+    const DEFAULT_LANGUAGE = 'ua';
 
     private $titles = array(
         'home' => 'Home Page',
@@ -56,12 +56,8 @@ class IndexPage implements IPage {
         $translator = Translator::getInstance();
         
         $this->request = new IndexRequest();
-        
-        $language = $this->setupLanguage();
 
         $response = new IndexResponse();
-        
-        $response->setLanguage($language);
 
         /**
          * @todo fix it
@@ -85,6 +81,9 @@ class IndexPage implements IPage {
 //                $response->setLoginError("Login error");
 //            }
         }
+        
+        $language = $this->setupLanguage();
+        $response->setLanguage($language);
 
         $response->setIsLogined($isLogined);
 
@@ -148,8 +147,17 @@ class IndexPage implements IPage {
     private function logout() {
         $caller = Caller::getInstance();
 
-        session_destroy();
         $caller->makeLogoutCall();
+        
+        setcookie('A2BSesIdentClients', '' , time() - 42);
+
+        $params = session_get_cookie_params();
+        setcookie(session_name(), '', time() - 42000, $params["path"], $params["domain"], $params["secure"], $params["httponly"]);
+
+        $_SESSION = array();
+
+        session_destroy();
+        
         header('Location: ' . WWW_ROOT);
     }
 
@@ -181,10 +189,12 @@ class IndexPage implements IPage {
 
         if ($result == "true") {
             $user = UserQuery::create()->findOneByEmail($this->request->getEmail());
-            $this->request->setSessionVar('id', $user->getId());
-            $this->setSessionCookie();
-
-            return true;
+            
+            if ($user) {
+                $this->request->setSessionVar('id', $user->getId());
+                $this->setSessionCookie();
+                return true;
+            }
         }
 
         return false;
