@@ -1,7 +1,7 @@
 RewriteEngine On
 #RewriteBase /callermate/
 
-RewriteRule ^cabinet/signup/activate.php$ activate.php [L,QSA]
+RewriteRule ^signup/activate.php$ activate.php [L,QSA]
 
 RewriteRule ^logout.html/?$ index.php?action=logout [L,QSA]
 RewriteRule ^(ua|ru|pl|en)/logout.html/?$ index.php?action=logout [L,QSA]
