@@ -82,7 +82,7 @@ class IndexPage implements IPage {
 //            }
         }
         
-        $language = $this->setupLanguage();
+        $language = $this->setupLanguage($isLogined);
         $response->setLanguage($language);
 
         $response->setIsLogined($isLogined);
@@ -114,15 +114,19 @@ class IndexPage implements IPage {
      * Setups language.
      * @return string
      */
-    public function setupLanguage() {
+    public function setupLanguage($isLogined) {
         $caller = Caller::getInstance();
         
         if ($this->request->getSessionVar('language') != $this->request->getLanguage() && $this->request->getLanguage() != null) {
             $this->request->setSessionVar('language', $this->request->getLanguage());
-            $caller->setLanguageCall($this->request->getLanguage());
+            $caller->setLanguageCall($this->request->getLanguage(), $isLogined);
         } elseif (!$this->request->getSessionVar('language')) {
             $this->request->setSessionVar('language', self::DEFAULT_LANGUAGE);
-            $caller->setLanguageCall(self::DEFAULT_LANGUAGE);
+            $caller->setLanguageCall(self::DEFAULT_LANGUAGE, $isLogined);
+        }
+        
+        if (!$isLogined) {
+            $this->setSessionCookie();
         }
 
         return $this->request->getSessionVar('language');
@@ -193,6 +197,8 @@ class IndexPage implements IPage {
             if ($user) {
                 $this->request->setSessionVar('id', $user->getId());
                 $this->setSessionCookie();
+                
+                $caller->setLanguageCall($this->request->getSessionVar('language'));
                 return true;
             }
         }
@@ -215,6 +221,8 @@ class IndexPage implements IPage {
 
         if ($result == "true") {
             $this->setSessionCookie();
+            
+            $caller->setLanguageCall($this->request->getSessionVar('language'));
             return true;
         }
 

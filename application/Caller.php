@@ -72,7 +72,7 @@ class Caller {
         $userRegistration = new UserRegister($email, $phone, $firstname, $lastname, $address, $city, $country, $postcode);
         $url = $userRegistration->createCallUrl();
 
-        $options = $this->createCallOptions($url, false);
+        $options = $this->createCallOptions($url);
         $result = $this->curlCall($options);
 
         return $result;
@@ -120,7 +120,7 @@ class Caller {
         return $result;
     }
 
-    public function setLanguageCall($language = 'en') {
+    public function setLanguageCall($language = 'en', $userLogined = true) {
         //Brutal hack
         if ($language == 'ua') {
             $language = 'ru';
@@ -129,7 +129,11 @@ class Caller {
         $setLanguage = new SetLanguage($language);
         $url = $setLanguage->createCallUrl();
         
-        $options = $this->createCallOptions($url);
+        if ($userLogined) {
+            $options = $this->createCallOptions($url);
+        } else {
+            $options = $this->createCallOptions($url, false);
+        }
         $result = $this->curlCall($options);
 
         return $result;
