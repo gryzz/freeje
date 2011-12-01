@@ -14,13 +14,14 @@ require_once PATH_CALLS . 'PasswordRecovery.php';
 require_once PATH_CALLS . 'SetLanguage.php';
 require_once PATH_CALLS . 'GetCallBackCost.php';
 require_once PATH_CALLS . 'GetCallHistory.php';
+require_once PATH_CALLS . 'GetUserData.php';
 
 class Caller {
     private static $instance = null;
     
     public $cookieFile;
 
-    private function  __construct() {
+    private function __construct() {
         
         $this->cookieFile = PATH_SESSIONS . session_id();
 
@@ -205,6 +206,16 @@ class Caller {
     public function makeGetCallHistory($dateFrom, $dateTo) {
         $getCallHistory = new GetCallHistory($dateFrom, $dateTo);
         $url = $getCallHistory->createCallUrl();
+        
+        $options = $this->createCallOptions($url);
+        $result = $this->curlCall($options);
+        
+        return $result;
+    }
+    
+    public function makeGetUserDataCall() {
+        $getUserData = new GetUserData();
+        $url = $getUserData->createCallUrl();
         
         $options = $this->createCallOptions($url);
         $result = $this->curlCall($options);

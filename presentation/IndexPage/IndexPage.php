@@ -9,6 +9,7 @@ require_once PATH_PRESENTATION . 'TopUpComponent/TopUpComponent.php';
 require_once PATH_PRESENTATION . 'CallsHistoryComponent/CallsHistoryComponent.php';
 require_once PATH_PRESENTATION . 'ChangePasswordComponent/ChangePasswordComponent.php';
 require_once PATH_PRESENTATION . 'PasswordRecoveryComponent/PasswordRecoveryComponent.php';
+require_once PATH_PRESENTATION . 'UserBalance/UserBalanceComponent.php';
 require_once PATH_APPLICATION . 'Caller.php';
 require_once PATH_APPLICATION . 'Translator.php';
 require_once PATH_APPLICATION . 'UserApplication.php';
@@ -32,7 +33,8 @@ class IndexPage implements IPage {
         'passwordRecovery' => 'PasswordRecoveryComponent',
         'changePassword' => 'ChangePasswordComponent',
         'topUp' => 'TopUpComponent',
-        'callsHistory' => 'CallsHistoryComponent'
+        'callsHistory' => 'CallsHistoryComponent',
+        'userBalance' => 'UserBalanceComponent'
     );
 
     /**
