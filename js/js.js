@@ -52,12 +52,9 @@ $(document).ready(function() {
         return false;
     })
     
-    $('#firstNumber').blur(function() {
+    $('#calculate').click(function() {
         getCallPrice();
-    })
-    
-    $('#secondNumber').blur(function() {
-        getCallPrice();
+        return false;
     })
 });
 

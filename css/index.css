@@ -137,6 +137,25 @@ body {
                 #left form#login a.orange:hover {
                     text-decoration: underline;
                 }
+            
+        #left form#callCost a,
+            .form a.enter {
+                display: block;
+                margin: 0 auto 12px auto;
+                text-decoration: none;
+                font-size: 12px;
+                text-align: center;
+            }    
+            #left form#callCost a.enter,
+            .form a.enter {
+                text-align: left;
+                background: url('../img/calculate.png') no-repeat;
+                height: 18px;
+                line-height: 18px;
+                padding-left: 12px;
+                color: #fff;
+                width: 90px;
+            }
     #left form#callCost {
         color: #808284;
     }
